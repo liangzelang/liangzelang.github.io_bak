@@ -4,15 +4,15 @@
 
 # Site
 title: Zelang Liang
-subtitle: New Beginning
-description: 
+subtitle: New Bird , New Beginning
+description: 浪溢泽沉博客
 author: liangzelang
-language:
+language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://newbird.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
