@@ -15,4 +15,3 @@ src="http://yuntv.letv.com/bcloud.html?uu=4ubiflz0c7&vu=5ec1555912&auto_play=1&g
 >
 </iframe>
 
-this is [the Vedio](http://yuntv.letv.com/bcloud.html?uu=4ubiflz0c7&vu=5ec1555912&auto_play=1&gpcflag=1&width=640&height=360)
