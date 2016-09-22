@@ -1,17 +1,18 @@
 ---
-title: New Begining
+title: 菜鸟，新的征程
 date: 2016-07-20 16:21:14
+categories:
+- 生活
 tags:
+- 随笔
+comments: true
 ---
 
-由于之前毕业，考研，二战众多事情，网站关闭一年半。今天终于重新上线，现在变成个人博客了，分享生活，交流技术。
+我想首先我要介绍一下我的现状。我目前在北京理工读研究生，研究方向是模式识别与智能系统。<br/>
+<!--more-->
+2015年07月本科毕业，那个时候自己既没有选择工作，考研也失败了。我非常焦虑和担心，幸好有父母和朋友的支持和帮助，我决定了二战。由于二战，这个网站也关闭了一年多。现在也终于重新上线了，我把他弄成了我个人的博客，分享生活，交流技术。<br/>
+我个人主要会分享`C|C++|Shell|Python|模式识别|ML&&DL|数据结构与算法|Markdown|Git|Linux`等相关方面的内容。你对相关内容有任何看法与见解，非常欢迎一起沟通交流。<br/>
+菜鸟，新的征程。New bird，New beginning。
 
-this is [the resume](http://oapeb119y.bkt.clouddn.com/%E9%99%84%E4%BB%B6%E4%BA%8C%EF%BC%9A%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.pdf)
 
-<iframe 
-height=360 
-width=640 
-src="http://yuntv.letv.com/bcloud.html?uu=4ubiflz0c7&vu=5ec1555912&auto_play=1&gpcflag=1&width=640&height=360"
->
-</iframe>
 
