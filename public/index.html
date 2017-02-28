@@ -70,10 +70,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-HigtGUI的初识" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/21/test/" class="article-date">
-  <time datetime="2016-09-21T13:05:02.000Z" itemprop="datePublished">2016-09-21</time>
+    <a href="/2017/03/01/HigtGUI的初识/" class="article-date">
+  <time datetime="2017-02-28T22:48:02.000Z" itemprop="datePublished">2017-03-01</time>
 </a>
     
   <div class="article-category">
@@ -88,7 +88,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/21/test/">博客更新日志</a>
+      <a class="article-title" href="/2017/03/01/HigtGUI的初识/">HigtGUI的初识</a>
     </h1>
   
 
@@ -96,26 +96,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>2016.07.01 采用Github+Hexo方案搭建NewBird博客</li>
-<li>2016.07.05 采用七牛云作为图片存储方案,采用乐视云作为视频存储方案</li>
-<li>2016.08.20 把博客代码分为两个分支，上传至Github，实现在不同设备、平台更新博客</li>
-<li>2016.08.23 添加About页面，修改页面</li>
-<li>2016.09.21 添加多说评论系统，删除Disqus评论系统</li>
-<li>2016.09.22 规范页面，规范文章格式、分类、标签等 </li>
-</ul>
-
+        <ol>
+<li><b>imread()函数</b><br> Mat imread(const string &amp; filename, int flags = 1);<br>其中第一个参数表示要读取的图像文件名， const string &amp;类型的filename。值得注意的是图像的路径。支持多种类型的图像载入，主流的有bmp\jpg\jpeg\png\ppm\pgm\ras\tif等类型。<br>第二个参数表示载入标识，就是需要以何种方式把原图像呈现，默认参数为1。可以在OpenCV的图像标识枚举中选取：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">enum</div><div class="line">&#123;</div><div class="line">/* 8bit, color or not */</div><div class="line">//新的版本中已经取消，忽略，原通道读取</div><div class="line">    CV_LOAD_IMAGE_UNCHANGED  =-1, </div><div class="line">/* 8bit, gray */</div><div class="line">//原图像转换为灰度图像输出</div><div class="line">    CV_LOAD_IMAGE_GRAYSCALE  =0,</div><div class="line">/* ?, color */</div><div class="line">//原图像转换为彩色图像输出，如果原图像是灰度图像，输出还是灰度</div><div class="line">    CV_LOAD_IMAGE_COLOR      =1,</div><div class="line">/* any depth, ? */</div><div class="line">//如果图像深度为16或者32位，则输出相应深度的图像，否则转换为8位深度图像</div><div class="line">    CV_LOAD_IMAGE_ANYDEPTH   =2,</div><div class="line">/* ?, any color */</div><div class="line">//原图像色彩保持不变</div><div class="line">    CV_LOAD_IMAGE_ANYCOLOR   =4</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>但是OpenCV3中这些宏都失效，故采用数字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Mat img = imread(&quot;pic.jpg&quot;,2|4)  //载入无损的源图像</div></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/03/01/HigtGUI的初识/#more">Read More</a>
+          </p>
+        
       
     </div>
 
     <footer class="article-footer">
-      <a data-url="http://newbird.cn/2016/09/21/test/" data-id="cite3cdtx0000c44um29ox9zp" class="article-share-link">Share</a>
-    <!-- 
-        ##不知道怎么修改，先注释
+     <a data-url="http://newbird.cn/2017/03/01/HigtGUI的初识/" data-id="cizq5758w000k1s4uxk6wforb" class="article-share-link">Share</a>
+    <!--  
 	
    -->
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li></ul>
 
     </footer>
  
@@ -126,14 +126,14 @@
 
 
   
-    <article id="post-New-Begining" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-c-成员运算符" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/20/New-Begining/" class="article-date">
-  <time datetime="2016-07-20T08:21:14.000Z" itemprop="datePublished">2016-07-20</time>
+    <a href="/2016/12/29/c-成员运算符/" class="article-date">
+  <time datetime="2016-12-29T15:49:13.000Z" itemprop="datePublished">2016-12-29</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
+    <a class="article-category-link" href="/categories/技术/">技术</a>
   </div>
 
   </div>
@@ -144,7 +144,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/20/New-Begining/">菜鸟，新的征程</a>
+      <a class="article-title" href="/2016/12/29/c-成员运算符/">c++成员运算符</a>
     </h1>
   
 
@@ -152,23 +152,519 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我想首先我要介绍一下我的现状。我目前在北京理工读研究生，研究方向是模式识别与智能系统。<br/><br>
+        <p>总结一下成员运算符的简单知识。</p>
+<ul>
+<li><p>成员运算符有直接成员运算符 <code>.</code> 和间接成员运算符 <code>-&gt;</code> </p>
+</li>
+<li><p>直接成员运算符 ‘.’<br>直接成员运算符主要是在直接引用，类本身以及内部引用时使用。人话就是对象使用</p>
+</li>
+<li><p>间接成员运算符 ‘-&gt;’<br>间接成员运算符主要是在间接引用时使用。人话就是指向对象的指针使用</p>
+</li>
+<li><p>有时，C++新手在指定结构成员时，搞不清楚何时应使用句点运算符，何时应使用箭头运算符。规则很简单，如果结构标识符是结构名称，则使用句点运算符（直接成员运算符）；如果标识符是指向结构的指针，则使用箭头运算符。</p>
+</li>
+</ul>
+<p><b>Example:</b></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//利用结构，演示直接成员运算符和间接成员运算符的用法</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> inflatable</div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> name[<span class="number">20</span>];</div><div class="line">	<span class="keyword">float</span> volume;</div><div class="line">	<span class="keyword">double</span> price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">	inflatable *ps = <span class="keyword">new</span> inflatable;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter name of inflable item: "</span>;</div><div class="line">	<span class="built_in">cin</span>.get(ps-&gt;name,<span class="number">20</span>);</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter volume in cubic feet : "</span>;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; (*ps).volume;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter price : $"</span>;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; ps-&gt;price;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Name: "</span> &lt;&lt; (*ps).name &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"volume : "</span>&lt;&lt; ps-&gt;volume &lt;&lt;<span class="string">"cubic feet\n"</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Price: $"</span> &lt;&lt; ps-&gt;price &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">	<span class="keyword">delete</span> ps;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/29/c-成员运算符/" data-id="cizq575bd001j1s4udte55wn6" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sizeof-和-strlen的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/29/sizeof-和-strlen的区别/" class="article-date">
+  <time datetime="2016-12-29T15:39:01.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一些场景下,希望得到数组的大小，字符串的长度，char型数组的长度等等，很自然想到sizeof以及strlen,但是非常容易搞混弄错.下面简要列出一些区别：</p>
+<ol>
+<li><p>sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。<br>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+</li>
+<li><p>sizeof是操作符，strlen是函数。 </p>
+</li>
+<li><p>sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">short f();</div><div class="line">printf(&quot;%d\n&quot;, sizeof(f()));</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出的结果是 <code>sizeof(short)</code> ，即2。 </p>
         
           <p class="article-more-link">
-            <a href="/2016/07/20/New-Begining/#more">Read More</a>
+            <a href="/2016/12/29/sizeof-和-strlen的区别/#more">Read More</a>
           </p>
         
       
     </div>
 
     <footer class="article-footer">
-      <a data-url="http://newbird.cn/2016/07/20/New-Begining/" data-id="cite3cdue0002c44usubowy7u" class="article-share-link">Share</a>
-    <!-- 
-        ##不知道怎么修改，先注释
+     <a data-url="http://newbird.cn/2016/12/29/sizeof-和-strlen的区别/" data-id="cizq575bo001m1s4ub49cqzd9" class="article-share-link">Share</a>
+    <!--  
 	
    -->
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C-指针注意事项" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/29/C-指针注意事项/" class="article-date">
+  <time datetime="2016-12-29T15:34:47.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/C-指针注意事项/">C++指针注意事项</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>一定要在对指针使用解除运算符（*）之前，将指针初始化为一个确定的适当的地址，这是关于使用指针的金科玉律。</p>
+</li>
+<li><p>使用delete的关键在于，将他用于new分配的内存。这并不意味这要使用用于new的指针，而是用于new分配的地址。<br><b>Example:</b></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> *ps = <span class="keyword">new</span> <span class="keyword">int</span>;    <span class="comment">//allocate memory</span></div><div class="line"><span class="keyword">int</span> *pq = ps;         <span class="comment">//set second pointer to same block</span></div><div class="line"><span class="keyword">delete</span> pq;			  <span class="comment">//delete with second pointer</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上方法为同一使用new分配的空间，创建了两个指针，通常不会这么做，这将增加删除同一内存块两次的可能性。遵守</p>
+<ul>
+<li>使用new和delete时，需要以下规则。</li>
+</ul>
+<ol>
+<li>不要使用delete来释放不是new分配的内存；</li>
+<li>不要使用delete释放同一个内存块两次；</li>
+<li>如果使用new []为数组分配内存，则应使用delete []来释放</li>
+<li>如果使用new []为一个实体分配内存，则应使用delete来释放</li>
+<li>对空指针使用delete是安全的</li>
+</ol>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/29/C-指针注意事项/" data-id="cizq5758r000h1s4ughm1cl5e" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-414-the-third-maxium-number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/28/414-the-third-maxium-number/" class="article-date">
+  <time datetime="2016-12-28T15:26:04.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/28/414-the-third-maxium-number/">414. the third maxium number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).<br><b>Example 1:</b><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: The third maximum is <span class="number">1.</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><b>Example 2:</b><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1, 2]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: The third maximum does not exist, so the maximum (2) is returned instead.</div></pre></td></tr></table></figure></p>
+<p><b>Example 3:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: Note that the third maximum here means the third maximum distinct number.</div><div class="line">Both numbers with value <span class="number">2</span> are both considered as second maximum.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：给一个非空整型数组，返回第三大的数字，如果不存在则返回最大的数字，要求时间复杂度为0（n）
+        
+          <p class="article-more-link">
+            <a href="/2016/12/28/414-the-third-maxium-number/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/28/414-the-third-maxium-number/" data-id="cizq5758200061s4umauum55w" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-1-two-sum" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/1-two-sum/" class="article-date">
+  <time datetime="2016-12-26T15:35:23.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/1-two-sum/">1.two sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+</li>
+<li><p>You may assume that each input would have exactly one solution.</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</div><div class="line"></div><div class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</div><div class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/26/1-two-sum/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/26/1-two-sum/" data-id="cizq5756t00001s4uzpx1cghy" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-461-hamming-distance-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/461-hamming-distance-md/" class="article-date">
+  <time datetime="2016-12-23T02:11:23.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/461-hamming-distance-md/">461.hamming distance</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
+</li>
+<li><p>Given two integers x and y, calculate the Hamming distance.</p>
+</li>
+</ul>
+<p><b>Note</b>:<br>0 ≤ x, y &lt; 2^31.</p>
+<p><b>Example</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line"></div><div class="line">The above arrows point to positions where the corresponding bits are different.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>：Hanmming Distance 就是两个整数[0 2^31]二进制表示对应位上不同位数的个数。给定X,Y求取两者的hamming distance
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/461-hamming-distance-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/461-hamming-distance-md/" data-id="cizq5758h000c1s4uvliqg80w" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-442-find-all-duplicates-in-an-array-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/442-find-all-duplicates-in-an-array-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:57.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/442-find-all-duplicates-in-an-array-md/">442.find all duplicates in an array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.</p>
+</li>
+<li><p>Find all the elements that appear twice in this array.</p>
+</li>
+<li><p>Could you do it without extra space and in O(n) runtime?</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[2,3]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：一个整型数组，[1,n]其中n为数组大小，其中有些元素出现2次，有些出现1次，求出现2次的元素，0(n)复杂度
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/442-find-all-duplicates-in-an-array-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/442-find-all-duplicates-in-an-array-md/" data-id="cizq5758c000a1s4u1mfyaxl5" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-412-fizz-buzz-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/412-fizz-buzz-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:06.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/412-fizz-buzz-md/">412. fizz buzz</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Write a program that outputs the string representation of numbers from 1 to n.</p>
+</li>
+<li><p>But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">n = <span class="number">15</span>,</div><div class="line"></div><div class="line">Return:</div><div class="line">[</div><div class="line">    <span class="string">"1"</span>,</div><div class="line">    <span class="string">"2"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"4"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"7"</span>,</div><div class="line">    <span class="string">"8"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"11"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"13"</span>,</div><div class="line">    <span class="string">"14"</span>,</div><div class="line">    <span class="string">"FizzBuzz"</span></div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：写一个程序输出1到n的字符串表达，但是 如果是3的倍数，不输出对应数字的字符串，而是输出“Fizz” ，如果是5的倍数，不输出对应数字的字符串，而是输出“Buzz”， 若同时是3和5的倍数，则输出 “FizzBuzz”。
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/412-fizz-buzz-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/412-fizz-buzz-md/" data-id="cizq5758600081s4ufy7xydfu" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-202-happy-number-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/202-happy-number-md/" class="article-date">
+  <time datetime="2016-12-23T02:08:24.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/202-happy-number-md/">202.happy number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>write an algorithm to determine if a number is ‘happy’</p>
+</li>
+<li><p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay),or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+</li>
+</ul>
+<p><b>Example:</b> 19 is a happy number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1^2 + 9^2 = 82</div><div class="line">8^2 + 2^2 = 68</div><div class="line">6^2 + 8^2 = 100</div><div class="line">1^2 + 0^2 + 0^2 = 1</div></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>： 判断一个正整数是否为一个happy-number，一个正整数各位的平方和代替次正整数，不断迭代，如果迭代出1，则为happy-number，否则不是而且会出现无限循环。
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/202-happy-number-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/202-happy-number-md/" data-id="cizq5757s00051s4ut2im6f9n" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
 
     </footer>
  
@@ -180,11 +676,15 @@
 
   
 
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
   
-    
+    <% if (site.tags.length){ %>
   <div class="widget-wrap">
     <h2 class="widget-title"><b>关于我</b></h2>
     <div class="widget">
@@ -192,7 +692,7 @@
  <b>现状</b>： 目前北京理工大学模式识别硕士在读，2018年毕业。个人喜欢图像处理、计算机视觉、机器学习等领域。我的<a href="http://oapeb119y.bkt.clouddn.com/%E9%99%84%E4%BB%B6%E4%BA%8C%EF%BC%9A%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.pdf">个人简历</a></front>
     </div>
   </div>
-
+<% } %>
 
   
     
@@ -212,11 +712,23 @@
       <ul>
         
           <li>
-            <a href="/2016/09/21/test/">博客更新日志</a>
+            <a href="/2017/03/01/HigtGUI的初识/">HigtGUI的初识</a>
           </li>
         
           <li>
-            <a href="/2016/07/20/New-Begining/">菜鸟，新的征程</a>
+            <a href="/2016/12/29/c-成员运算符/">c++成员运算符</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/29/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/29/C-指针注意事项/">C++指针注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/28/414-the-third-maxium-number/">414. the third maxium number</a>
           </li>
         
       </ul>
@@ -228,7 +740,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/OpenCV基础/" style="font-size: 10px;">OpenCV基础</a> <a href="/tags/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tags/c/" style="font-size: 15px;">c++</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/数据结构与算法/" style="font-size: 20px;">数据结构与算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -237,7 +749,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
   </div>
 
@@ -247,7 +759,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
     </div>
   </div>
 
@@ -260,7 +772,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 liangzelang<br>
+      &copy; 2017 liangzelang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

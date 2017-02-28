@@ -24,9 +24,8 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    <!-- 
-	<!--这一段我实在不知道怎么修改了，所以就直接注释了。以后再搞一搞一段吧-->
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
 	<% if (post.comments && config.disqus_shortname){ %>
 	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
       <% } %>

@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://newbird.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -68,9 +68,14 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
-  type: git
+- type: git
+  repo: https://git.coding.net/liangzelang/liangzelangBlog.git
+  branch: master
+- type: git
   repo: https://github.com/liangzelang/liangzelang.github.io.git
-branch: master
+  branch: master
+#  repo: https://github.com/liangzelang/liangzelang.github.io.git
+# branch: master
 
 #多说评论系统
 duoshuo_shortname: newbird
