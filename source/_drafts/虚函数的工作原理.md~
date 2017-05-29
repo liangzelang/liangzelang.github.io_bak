@@ -1,0 +1,55 @@
+---
+title: 虚函数的工作原理
+date: 2017-03-12 07:09:16
+categories:
+- 技术
+tags:
+- c++
+comments: true
+---
++ 为什么需要虚函数？
+在编写程序的过程中，一定会遇到这样的场景。派生类继承了基类的方法,但是我们希望同一个方法在派生类和基类中的行为不同，就是方法取决于调用的对象（这种复杂的行为就是多态）。实现多态的公有继承有两种重要的机制。
+1. 在派生类中重新定义基类方法 （可以定义不同方法）
+2. 虚函数 （可以使基类引用或指针可以调用派生类新定义的方法）
+
++ 虚函数基本语法？
+在需要重新定义的方法前添加关键字 virtual，然后分别定义即可。
+
++ 编译器如何确定作者想使用哪种方法？
+```
+class person{
+	virtual void show();  //具体定义就不写了，反正和派生类不一样
+};
+class student : public person{
+	virtual void show();  
+};
+person temp_person(……);  //构造函数，实例化一个对象
+student temp_student(……);
+temp_person.show();    //person::show()
+temp_student.show();   //student::show()
+person & temp_s = temp_student; 
+person & temp_p = temp_person;
+temp_s.show();         //person::show()
+temp_p.show();         //student::show()
+```
+如上述代码所示，基类和派生类有不一样的方法，那么我在使用的时候，我怎么判断调用的是哪个方法。
+如果使用virtual,根据引用或指针指向的对象类型来选择方法。
+如果不是使用virtual，根据引用或指针的类型来选择方法。（这个没有太懂，来自C++ primer plus p493，如果重名了，参数列表还相同……感觉死机了额）
+```
+class person{
+	void show();  
+};
+class student : public person{
+	void show();  //这里涉及隐藏规则，具体在 effective C++ third edition p156
+};
+person temp_person(……);  //构造函数，实例化一个对象
+student temp_student(……);
+temp_person.show();    //person::show()
+temp_student.show();   //student::show()
+person & temp_s = temp_student; 
+person & temp_p = temp_person;
+temp_s.show();         //person::show()  
+temp_p.show();         //person::show()  这里不确定呀
+```
++ 实现原理
+

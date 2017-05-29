@@ -70,9 +70,436 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Linux下gedit打开文件产生带波浪号（～）的备份文件" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CPP/C-指针注意事项" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/20/Linux下gedit打开文件产生带波浪号（～）的备份文件/" class="article-date">
+    <a href="/2016/12/29/CPP/C-指针注意事项/" class="article-date">
+  <time datetime="2016-12-29T15:34:47.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/CPP/C-指针注意事项/">C++指针注意事项</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>一定要在对指针使用解除运算符（*）之前，将指针初始化为一个确定的适当的地址，这是关于使用指针的金科玉律。</p>
+</li>
+<li><p>使用delete的关键在于，将他用于new分配的内存。这并不意味这要使用用于new的指针，而是用于new分配的地址。<br><b>Example:</b></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> *ps = <span class="keyword">new</span> <span class="keyword">int</span>;    <span class="comment">//allocate memory</span></div><div class="line"><span class="keyword">int</span> *pq = ps;         <span class="comment">//set second pointer to same block</span></div><div class="line"><span class="keyword">delete</span> pq;			  <span class="comment">//delete with second pointer</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上方法为同一使用new分配的空间，创建了两个指针，通常不会这么做，这将增加删除同一内存块两次的可能性。遵守</p>
+<ul>
+<li>使用new和delete时，需要以下规则。</li>
+</ul>
+<ol>
+<li>不要使用delete来释放不是new分配的内存；</li>
+<li>不要使用delete释放同一个内存块两次；</li>
+<li>如果使用new []为数组分配内存，则应使用delete []来释放</li>
+<li>如果使用new []为一个实体分配内存，则应使用delete来释放</li>
+<li>对空指针使用delete是安全的</li>
+</ol>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/29/CPP/C-指针注意事项/" data-id="cj0to3l8g000cq74unk05b36g" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Leetcode/414-the-third-maxium-number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/28/Leetcode/414-the-third-maxium-number/" class="article-date">
+  <time datetime="2016-12-28T15:26:04.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/28/Leetcode/414-the-third-maxium-number/">414. the third maxium number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).<br><b>Example 1:</b><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: The third maximum is <span class="number">1.</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><b>Example 2:</b><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1, 2]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: The third maximum does not exist, so the maximum (2) is returned instead.</div></pre></td></tr></table></figure></p>
+<p><b>Example 3:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: Note that the third maximum here means the third maximum distinct number.</div><div class="line">Both numbers with value <span class="number">2</span> are both considered as second maximum.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：给一个非空整型数组，返回第三大的数字，如果不存在则返回最大的数字，要求时间复杂度为0（n）
+        
+          <p class="article-more-link">
+            <a href="/2016/12/28/Leetcode/414-the-third-maxium-number/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/28/Leetcode/414-the-third-maxium-number/" data-id="cj0to3l9h000xq74uortdrxd8" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Leetcode/1-two-sum" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/Leetcode/1-two-sum/" class="article-date">
+  <time datetime="2016-12-26T15:35:23.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/Leetcode/1-two-sum/">1.two sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+</li>
+<li><p>You may assume that each input would have exactly one solution.</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</div><div class="line"></div><div class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</div><div class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/26/Leetcode/1-two-sum/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/26/Leetcode/1-two-sum/" data-id="cj0to3l97000rq74urb6813yj" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Leetcode/461-hamming-distance-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/Leetcode/461-hamming-distance-md/" class="article-date">
+  <time datetime="2016-12-23T02:11:23.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/461-hamming-distance-md/">461.hamming distance</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
+</li>
+<li><p>Given two integers x and y, calculate the Hamming distance.</p>
+</li>
+</ul>
+<p><b>Note</b>:<br>0 ≤ x, y &lt; 2^31.</p>
+<p><b>Example</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line"></div><div class="line">The above arrows point to positions where the corresponding bits are different.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>：Hanmming Distance 就是两个整数[0 2^31]二进制表示对应位上不同位数的个数。给定X,Y求取两者的hamming distance
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/Leetcode/461-hamming-distance-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/461-hamming-distance-md/" data-id="cj0to3l9x0014q74uxjbnfmt0" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Leetcode/442-find-all-duplicates-in-an-array-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:57.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/">442.find all duplicates in an array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.</p>
+</li>
+<li><p>Find all the elements that appear twice in this array.</p>
+</li>
+<li><p>Could you do it without extra space and in O(n) runtime?</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[2,3]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：一个整型数组，[1,n]其中n为数组大小，其中有些元素出现2次，有些出现1次，求出现2次的元素，0(n)复杂度
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" data-id="cj0to3l9q0012q74ubj73rebw" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Leetcode/412-fizz-buzz-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/Leetcode/412-fizz-buzz-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:06.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/412-fizz-buzz-md/">412. fizz buzz</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Write a program that outputs the string representation of numbers from 1 to n.</p>
+</li>
+<li><p>But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">n = <span class="number">15</span>,</div><div class="line"></div><div class="line">Return:</div><div class="line">[</div><div class="line">    <span class="string">"1"</span>,</div><div class="line">    <span class="string">"2"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"4"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"7"</span>,</div><div class="line">    <span class="string">"8"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"11"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"13"</span>,</div><div class="line">    <span class="string">"14"</span>,</div><div class="line">    <span class="string">"FizzBuzz"</span></div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：写一个程序输出1到n的字符串表达，但是 如果是3的倍数，不输出对应数字的字符串，而是输出“Fizz” ，如果是5的倍数，不输出对应数字的字符串，而是输出“Buzz”， 若同时是3和5的倍数，则输出 “FizzBuzz”。
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/Leetcode/412-fizz-buzz-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/412-fizz-buzz-md/" data-id="cj0to3l9l000zq74ucvthr39d" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Leetcode/202-happy-number-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/Leetcode/202-happy-number-md/" class="article-date">
+  <time datetime="2016-12-23T02:08:24.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/202-happy-number-md/">202.happy number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>write an algorithm to determine if a number is ‘happy’</p>
+</li>
+<li><p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay),or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+</li>
+</ul>
+<p><b>Example:</b> 19 is a happy number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1^2 + 9^2 = 82</div><div class="line">8^2 + 2^2 = 68</div><div class="line">6^2 + 8^2 = 100</div><div class="line">1^2 + 0^2 + 0^2 = 1</div></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>： 判断一个正整数是否为一个happy-number，一个正整数各位的平方和代替次正整数，不断迭代，如果迭代出1，则为happy-number，否则不是而且会出现无限循环。
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/Leetcode/202-happy-number-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/202-happy-number-md/" data-id="cj0to3l9b000uq74ut3kzc3tf" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" class="article-date">
   <time datetime="2016-12-20T00:00:17.000Z" itemprop="datePublished">2016-12-20</time>
 </a>
     
@@ -88,7 +515,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/20/Linux下gedit打开文件产生带波浪号（～）的备份文件/">Linux下gedit打开文件产生带波浪号（～）的备份文件</a>
+      <a class="article-title" href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/">Linux下gedit打开文件产生带波浪号（～）的备份文件</a>
     </h1>
   
 
@@ -112,7 +539,7 @@
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/20/Linux下gedit打开文件产生带波浪号（～）的备份文件/" data-id="cizq57599000o1s4uradzte6a" class="article-share-link">Share</a>
+     <a data-url="http://newbird.cn/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" data-id="cj0to3la60016q74ud6q3k7xq" class="article-share-link">Share</a>
     <!--  
 	
    -->
@@ -128,9 +555,9 @@
 
 
   
-    <article id="post-20160925-md" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-OpenCV/VS2010+OpenCV2.4.10的安装与配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/25/20160925-md/" class="article-date">
+    <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" class="article-date">
   <time datetime="2016-09-24T22:56:32.000Z" itemprop="datePublished">2016-09-25</time>
 </a>
     
@@ -146,7 +573,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/25/20160925-md/">VS2010+OpenCV2.4.10的安装与配置</a>
+      <a class="article-title" href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/">VS2010+OpenCV2.4.10的安装与配置</a>
     </h1>
   
 
@@ -160,19 +587,19 @@
 <h2 id="3、OpenCV的配置"><a href="#3、OpenCV的配置" class="headerlink" title="3、OpenCV的配置"></a>3、OpenCV的配置</h2>
         
           <p class="article-more-link">
-            <a href="/2016/09/25/20160925-md/#more">Read More</a>
+            <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/#more">Read More</a>
           </p>
         
       
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/09/25/20160925-md/" data-id="cizq5757900021s4uk1wn1yxt" class="article-share-link">Share</a>
+     <a data-url="http://newbird.cn/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" data-id="cj0to3lao001hq74us2rby9ts" class="article-share-link">Share</a>
     <!--  
 	
    -->
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2010/">VS2010</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2010/">VS2010</a></li></ul>
 
     </footer>
  
@@ -183,9 +610,9 @@
 
 
   
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Summary/test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/21/test/" class="article-date">
+    <a href="/2016/09/21/Summary/test/" class="article-date">
   <time datetime="2016-09-21T13:05:02.000Z" itemprop="datePublished">2016-09-21</time>
 </a>
     
@@ -201,7 +628,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/21/test/">博客更新日志</a>
+      <a class="article-title" href="/2016/09/21/Summary/test/">博客更新日志</a>
     </h1>
   
 
@@ -223,7 +650,7 @@
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/09/21/test/" data-id="cizq575bv001o1s4ukw7fui6g" class="article-share-link">Share</a>
+     <a data-url="http://newbird.cn/2016/09/21/Summary/test/" data-id="cj0to3lb1001rq74u96i3nxkm" class="article-share-link">Share</a>
     <!--  
 	
    -->
@@ -239,72 +666,24 @@
 
 
   
-    <article id="post-New-Begining" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/20/New-Begining/" class="article-date">
-  <time datetime="2016-07-20T08:21:14.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/20/New-Begining/">菜鸟，新的征程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我想首先我要介绍一下我的现状。我目前在北京理工读研究生，研究方向是模式识别与智能系统。<br><br>2015年07月本科毕业，那个时候自己既没有选择工作，考研也失败了。我非常焦虑和担心，幸好有父母和朋友的支持和帮助，我决定了二战。由于二战，这个网站也关闭了一年多。现在也终于重新上线了，我把他弄成了我个人的博客，分享生活，交流技术。<br><br>我个人主要会分享<code>C|C++|Shell|Python|模式识别|ML&amp;&amp;DL|数据结构与算法|Markdown|Git|Linux</code>等相关方面的内容。你对相关内容有任何看法与见解，非常欢迎一起沟通交流。<br><br>菜鸟，新的征程。New bird，New beginning。</p>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/07/20/New-Begining/" data-id="cizq575b9001i1s4uhq8qztu8" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.tags.length){ %>
+    
   <div class="widget-wrap">
     <h2 class="widget-title"><b>关于我</b></h2>
     <div class="widget">
- <front size="3"><b>邮箱</b>：　liangzelang@gmail.com<br>
+ <front size="3"><b>邮箱</b>：liangzelang@gmail.com<br>
  <b>现状</b>： 目前北京理工大学模式识别硕士在读，2018年毕业。个人喜欢图像处理、计算机视觉、机器学习等领域。我的<a href="http://oapeb119y.bkt.clouddn.com/%E9%99%84%E4%BB%B6%E4%BA%8C%EF%BC%9A%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.pdf">个人简历</a></front>
     </div>
   </div>
-<% } %>
+
 
   
     
@@ -324,23 +703,23 @@
       <ul>
         
           <li>
-            <a href="/2017/03/01/HigtGUI的初识/">HigtGUI的初识</a>
+            <a href="/2017/03/28/OpenCV/core组件进阶/">core组件进阶</a>
           </li>
         
           <li>
-            <a href="/2016/12/29/c-成员运算符/">c++成员运算符</a>
+            <a href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/">OpenCV数据结构与基本绘图</a>
           </li>
         
           <li>
-            <a href="/2016/12/29/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
+            <a href="/2017/03/12/CPP/虚析构函数的作用/">虚析构函数的作用</a>
           </li>
         
           <li>
-            <a href="/2016/12/29/C-指针注意事项/">C++指针注意事项</a>
+            <a href="/2017/03/12/CPP/虚函数的工作原理/">虚函数的工作原理</a>
           </li>
         
           <li>
-            <a href="/2016/12/28/414-the-third-maxium-number/">414. the third maxium number</a>
+            <a href="/2017/03/12/CPP/模板的具体化和实例化/">模板的具体化和实例化</a>
           </li>
         
       </ul>
@@ -352,7 +731,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/OpenCV基础/" style="font-size: 10px;">OpenCV基础</a> <a href="/tags/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tags/c/" style="font-size: 15px;">c++</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/数据结构与算法/" style="font-size: 20px;">数据结构与算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/OpenCV基础/" style="font-size: 13.33px;">OpenCV基础</a> <a href="/tags/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/leetcode/" style="font-size: 16.67px;">leetcode</a> <a href="/tags/数据结构与算法/" style="font-size: 16.67px;">数据结构与算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -361,7 +740,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
   </div>
 

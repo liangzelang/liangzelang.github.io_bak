@@ -70,9 +70,460 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-HigtGUI的初识" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-OpenCV/core组件进阶" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/01/HigtGUI的初识/" class="article-date">
+    <a href="/2017/03/28/OpenCV/core组件进阶/" class="article-date">
+  <time datetime="2017-03-28T14:54:25.000Z" itemprop="datePublished">2017-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/OpenCV/core组件进阶/">core组件进阶</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>LUT函数： LOOK UP TABLE 操作<br>用于批量元素查找、扫描和操作图像。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//首先我们建立一个mat型用于查表</div><div class="line">Mat lookUpTable(1, 256, CV_8U);</div><div class="line">uchar* p = lookUpTable.data;</div><div class="line">for( int i = 0; i &lt; 256; ++ i)</div><div class="line">&#123;</div><div class="line">	p[i] = table[i];</div><div class="line">&#125;</div><div class="line">//然后我们调用函数(I 是输入， J 是输出)：</div><div class="line">for(int i = 0; i &lt; times; ++ i)</div><div class="line">	LUT(I, lookUpTable, J);</div></pre></td></tr></table></figure>
+</li>
+<li><p>计时函数<br>‘getTickCount()’函数： 返回CPU自某个时间以来走过的时钟周期；<br>‘getTickFrequency()’函数： 返回CPU一秒钟的时钟周期；<br>故使用以上两个函数可以得到某段程度的运行时间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">double time1 = static_cast&lt;double&gt;(getTickCount()); //记录起始时间</div><div class="line">// 你的程序...</div><div class="line">time1 = ((double)getTickCount() - time1) / getTickFrequency();</div><div class="line">cout &lt;&lt; &quot;程序运行时间 : &quot; &lt;&lt; time1 &lt;&lt; endl;</div></pre></td></tr></table></figure>
+</li>
+<li><p>访问图中像素的方法<br>图像处理最基本的就是处理每个点的像素啦，所以呢，如何访问每个像素点呢。</p>
+</li>
+</ul>
+<ol>
+<li>指针访问： C操作符[]<br>如果是一幅 640 *320 的图像，就把他看成是一个二维数组 pic[640][320]。两个嵌套的for循环，即可完成图像像素点的遍历。</li>
+</ol>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/28/OpenCV/core组件进阶/" data-id="cj0to3lar001kq74uxmp4pwyt" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-OpenCV/OpenCV数据结构与基本绘图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/" class="article-date">
+  <time datetime="2017-03-28T14:54:20.000Z" itemprop="datePublished">2017-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/">OpenCV数据结构与基本绘图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>IplImage与Mat<br>在最开始，OpenCV使用基于C语言接口构建，因此在较早版本的OpenCV中使用IplImage存储图像数据。这就造成了一定的问题，在调试了的时候，需要程序员手动release为IplImage分配的内存，不然可能造成内存泄漏。<br>在OpenCV2.0以来，就引入了C++接口，也就产生了基于C++的Mat数据结构，没错，它是可以自动内存管理的，因此我们现在用的最多的就是Mat数据结构了。Mat类很方便，不用手动分配内存、释放内存。<br>那么为什么IplImage还继续顽强存在呢，那就是因为大部分嵌入式系统只支持C语言.</p>
+</li>
+<li><p>Mat类 包含两个数据部分，一个部分是矩阵头（矩阵尺寸、存储方法、存储地址等），另一部分指向存储所有像素值得矩阵。</p>
+</li>
+</ol>
+<p>需要记住的是，大多时候复制Mat类，只是引用矩阵头，而不是复制整个像素矩阵，这将导致巨大的时间成本。因此，OpenCV采用引用计数机制，每个Mat对象都有独自的矩阵头，但是共享一个像素矩阵。常见的复制构造函数、赋值符号都是只复制矩阵头，而不是复制整个像素矩阵。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//以下三个Mat对象有不同的矩阵头，但是共享一个矩阵</div><div class="line">Mat A;   //创建矩阵头部分</div><div class="line">A = imread(const string &amp; filename, 1);  // 为矩阵开辟空间</div><div class="line">Mat B(A);  //采用复制构造函数</div><div class="line">Mat C = A;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>引用计数机制在上面的例子中有很好的说明，矩阵的引用次数为3，当Mat C的矩阵头被释放后，引用计数就减1，当引用次数为0时，矩阵空间就会被释放。</p>
+</li>
+<li><p>那么如果想复制整个矩阵，就需要使用clone()和copyTo()函数。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mat D = A.clone();</div><div class="line">Mat E;</div><div class="line">A.copyTo(E);</div></pre></td></tr></table></figure>
+<ul>
+<li>简要小结<br>++ OpenCV函数中C++接口，图像的内存都自动分配、释放；<br>++ 复制构造函数和赋值运算符只复制矩阵头；<br>++ clone(),copyTo()函数可以复制矩阵。</li>
+</ul>
+<ol>
+<li>Mat对象的创建和显式<br>Mat类型有多种创建方法，</li>
+</ol>
+<ul>
+<li>采用默认构造函数</li>
+<li>使用构造函数初始化</li>
+<li>为IplImage对象创建Mat信息头</li>
+<li>使用Create（）成员函数</li>
+<li>采用Matlab方式初始化</li>
+<li>采用逗号分隔符方式初始化</li>
+<li>为已存在的Mat对象创建新信息头<br>具体初始化代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">  //方法1：使用Mat（）构造函数</div><div class="line">Mat M(2, 2, CV_8UC3, Scalar(0,0,255));</div><div class="line">cout &lt;&lt; &quot;M = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; M &lt;&lt; endl;</div><div class="line"></div><div class="line">//way2 没有太懂，由于这是多维的数组，使用cout出错</div><div class="line">int sz[3] = &#123;2, 2, 2&#125;;</div><div class="line">Mat L(3, sz, CV_8UC3, Scalar::all(0));</div><div class="line"></div><div class="line">//way3 为IplImage创建信息头</div><div class="line">IplImage* img = cvLoadImage(&quot;D:\\C++程序联系文件夹（可选择性删除）\\OpenCV_Exercise\\learn.jpg&quot;,1);</div><div class="line">Mat mtx(img);</div><div class="line"></div><div class="line">//way4 使用Create()函数</div><div class="line">Mat K;</div><div class="line">K.create(4,4,CV_8UC(2));</div><div class="line">cout &lt;&lt; &quot;K = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; K &lt;&lt; endl &lt;&lt; endl;</div><div class="line">//way5 Matlab大法好</div><div class="line">Mat E = Mat::eye(4,4,CV_64F);</div><div class="line">cout &lt;&lt; &quot;E = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; E &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">Mat O = Mat::ones(2,2,CV_32F);</div><div class="line">cout &lt;&lt; &quot;O = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; O &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">Mat Z = Mat::zeros(3,3,CV_8UC1);</div><div class="line">cout &lt;&lt; &quot;Z = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; Z &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">//way6 </div><div class="line">Mat C = (Mat_&lt;double&gt;(3,3) &lt;&lt; 0, -1, 2, -1, 5, -1, 0, -1, 0);</div><div class="line">cout &lt;&lt; &quot;C = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; C &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">//way7 为已存在的对象创建新的信息头</div><div class="line">Mat RowClone = C.row(0).clone();</div><div class="line">cout &lt;&lt; &quot;RowClone = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; RowClone &lt;&lt; endl &lt;&lt; endl;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Mat类型的格式化输出方法，</p>
+<ul>
+<li>OpenCV默认方式</li>
+<li>Python输出风格</li>
+<li>逗号分隔风格（CSV）</li>
+<li>Numpy风格</li>
+<li>C语言风格<br>例程如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Mat r = Mat(3, 3, CV_8UC3);</div><div class="line">randu(r, Scalar::all(0), Scalar::all(255));</div><div class="line">//OpenCV格式化输出</div><div class="line">//way1 Opencv默认输出格式</div><div class="line">cout &lt;&lt; &quot;r 默认输出格式: &quot; &lt;&lt; endl &lt;&lt; r &lt;&lt; endl;</div><div class="line"></div><div class="line">//way2 python风格思密达</div><div class="line">cout &lt;&lt; &quot;r Python风格: &quot; &lt;&lt; endl &lt;&lt; format(r, &quot;python&quot;) &lt;&lt; endl;</div><div class="line"></div><div class="line">//way3 CSV风格</div><div class="line">cout &lt;&lt; &quot;r CSV风格: &quot;  &lt;&lt; endl &lt;&lt; format(r, &quot;csv&quot;) &lt;&lt; endl;</div><div class="line"></div><div class="line">//way4 Numpy风格</div><div class="line">cout &lt;&lt; &quot;r Numpy风格: &quot; &lt;&lt; endl &lt;&lt; format(r, &quot;numpy&quot;) &lt;&lt; endl;</div><div class="line"></div><div class="line">//way5 C style</div><div class="line">cout &lt;&lt; &quot;r C style: &quot; &lt;&lt; endl &lt;&lt; format(r, &quot;C&quot;) &lt;&lt; endl;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://oapeb119y.bkt.clouddn.com/image/opencv/Mat%E8%BE%93%E5%87%BA%E9%A3%8E%E6%A0%BC.png" alt="输出格式"></p>
+<ol>
+<li>OpenCV中常用基于图像的数据结构与函数介绍</li>
+</ol>
+<ul>
+<li>点的表示：Point 类<br>二维坐标系下的点<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Point2f p(6,2);</div><div class="line">cout &lt;&lt; &quot;[二维点] p = &quot; &lt;&lt; p &lt;&lt; endl;</div><div class="line"></div><div class="line">Point3f l(1,2,3);</div><div class="line">cout &lt;&lt; &quot;[三维点] l = &quot; &lt;&lt; l &lt;&lt; endl;</div><div class="line"></div><div class="line">vector&lt;float&gt; v;</div><div class="line">v.push_back(3);</div><div class="line">v.push_back(5);</div><div class="line">v.push_back(4);</div><div class="line">cout &lt;&lt; &quot;[基于Mat的Vector] v = &quot; &lt;&lt; Mat(v) &lt;&lt; endl;</div><div class="line"></div><div class="line">vector&lt;Point2f&gt; points(20);</div><div class="line">for(size_t i = 0; i &lt; points.size(); ++i)</div><div class="line">&#123;</div><div class="line">	points[i] = Point2f((float)(i*5),(float)(i%7));</div><div class="line">&#125;</div><div class="line">cout &lt;&lt; &quot;[二维点向量] points = &quot; &lt;&lt; points &lt;&lt; &quot;;&quot;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Point2f、Point3f等等其实都是一个类模板Point_<typename t="">.具体定义core.hpp中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">template&lt;typename _Tp&gt; class Point_</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    typedef _Tp value_type;</div><div class="line"></div><div class="line">    // various constructors</div><div class="line">    Point_();</div><div class="line">    Point_(_Tp _x, _Tp _y);</div><div class="line">    Point_(const Point_&amp; pt);</div><div class="line">    Point_(const CvPoint&amp; pt);</div><div class="line">    Point_(const CvPoint2D32f&amp; pt);</div><div class="line">    Point_(const Size_&lt;_Tp&gt;&amp; sz);</div><div class="line">    Point_(const Vec&lt;_Tp, 2&gt;&amp; v);</div><div class="line"></div><div class="line">    Point_&amp; operator = (const Point_&amp; pt);</div><div class="line">    //! conversion to another data type</div><div class="line">    template&lt;typename _Tp2&gt; operator Point_&lt;_Tp2&gt;() const;</div><div class="line"></div><div class="line">    //! conversion to the old-style C structures</div><div class="line">    operator CvPoint() const;</div><div class="line">    operator CvPoint2D32f() const;</div><div class="line">    operator Vec&lt;_Tp, 2&gt;() const;</div><div class="line"></div><div class="line">    //! dot product</div><div class="line">    _Tp dot(const Point_&amp; pt) const;</div><div class="line">    //! dot product computed in double-precision arithmetics</div><div class="line">    double ddot(const Point_&amp; pt) const;</div><div class="line">    //! cross-product</div><div class="line">    double cross(const Point_&amp; pt) const;</div><div class="line">    //! checks whether the point is inside the specified rectangle</div><div class="line">    bool inside(const Rect_&lt;_Tp&gt;&amp; r) const;</div><div class="line"></div><div class="line">    _Tp x, y; //&lt; the point coordinates</div><div class="line">&#125;; </div><div class="line"></div><div class="line">typedef Point_&lt;int&gt; Point2i;</div><div class="line">typedef Point2i Point;</div><div class="line">typedef Point_&lt;float&gt; Point2f;</div></pre></td></tr></table></figure></typename></p>
+<p>从这个二维点的类模板可以看出Point_<float> Point2f 都等价。</float></p>
+<ul>
+<li><p>颜色的表示： Scalar 类<br>这个也是OpenCV中实现的类模板，其实可以简单的看成包含4个元素的Vector,不过一般我们都是用RGB表示颜色，因此只用到三个元素。<b>需要注意的是，OpenCV默认的图片通道存储顺序不是我们熟悉的RGB，而是BGR。&lt;\b&gt;下面为Scalar模板类的源码，位于core.hpp中。</b></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">template&lt;typename _Tp&gt; class Scalar_ : public Vec&lt;_Tp, 4&gt;</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    //! various constructors</div><div class="line">    Scalar_();</div><div class="line">    Scalar_(_Tp v0, _Tp v1, _Tp v2=0, _Tp v3=0);</div><div class="line">    Scalar_(const CvScalar&amp; s);</div><div class="line">    Scalar_(_Tp v0);</div><div class="line"></div><div class="line">    //! returns a scalar with all elements set to v0</div><div class="line">    static Scalar_&lt;_Tp&gt; all(_Tp v0);</div><div class="line">    //! conversion to the old-style CvScalar</div><div class="line">    operator CvScalar() const;</div><div class="line"></div><div class="line">    //! conversion to another data type</div><div class="line">    template&lt;typename T2&gt; operator Scalar_&lt;T2&gt;() const;</div><div class="line"></div><div class="line">    //! per-element product</div><div class="line">    Scalar_&lt;_Tp&gt; mul(const Scalar_&lt;_Tp&gt;&amp; t, double scale=1 ) const;</div><div class="line"></div><div class="line">    // returns (v0, -v1, -v2, -v3)</div><div class="line">    Scalar_&lt;_Tp&gt; conj() const;</div><div class="line"></div><div class="line">    // returns true iff v1 == v2 == v3 == 0</div><div class="line">    bool isReal() const;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">typedef Scalar_&lt;double&gt; Scalar;</div></pre></td></tr></table></figure>
+</li>
+<li><p>尺寸的表示： Size 类<br>与以上的基本都一样，也是一个类模板，此处不详细描述。常用：’ Size(5, 6) // width 5, height 6 ‘.</p>
+</li>
+<li>矩阵的表示： Rect 类<br>同上。</li>
+<li>颜色的空间转换： cvtColor() 函数<br><code>void cvtColor(InputArray src, OutputArray dst, int code, int dstCn = 0);</code><br>InputArray src：输入图像<br>OutputArray dst: 输出图像<br>int code: 颜色空间转换标识符，是一堆枚举值，具体见<code>.../imgproc/types_c.h</code><br>int dstCn: 目标图像的通道数，默认值为0，取原图像的通道数</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/" data-id="cj0to3laj001dq74uc7kbh2m0" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CPP/虚析构函数的作用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/CPP/虚析构函数的作用/" class="article-date">
+  <time datetime="2017-03-11T23:09:46.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/CPP/虚析构函数的作用/">虚析构函数的作用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>为什么要使用虚析构函数？<br>如果有这样两个类：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	person(...);</div><div class="line">	virtual ~person();</div><div class="line">	virtual void show();  //具体定义就不写了，反正和派生类不一样</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	virtual void show();  </div><div class="line">&#125;;</div><div class="line">person temp_p(...);</div><div class="line">student temp_s(...);</div><div class="line">person * temp1 = temp_p;</div><div class="line">person * temp2 = temp_s;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>为了发挥C++多态的特性，我们一般会使用虚函数，采用基类指针或者引用来 对基类对象或者派生类对象进行操作。但是这样会有一个问题，如果析构函数不是虚函数，那么基类指针temp2结束代码段时，就只会调用指针类型(就是基类)的析构函数。如果这个基类指针指向的是派生类对象，那么派生类的析构函数就不会被调用，显然是有一定问题隐患的。<br>因此，使用虚析构函数可以确保正确的析构函数序列被调用。</p>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/12/CPP/虚析构函数的作用/" data-id="cj0to3l8w000lq74uuj1sbz7w" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CPP/虚函数的工作原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/CPP/虚函数的工作原理/" class="article-date">
+  <time datetime="2017-03-11T23:09:16.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/CPP/虚函数的工作原理/">虚函数的工作原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>为什么需要虚函数？<br>在编写程序的过程中，一定会遇到这样的场景。派生类继承了基类的方法,但是我们希望同一个方法在派生类和基类中的行为不同，就是方法取决于调用的对象（这种复杂的行为就是多态）。实现多态的公有继承有两种重要的机制。</li>
+</ul>
+<ol>
+<li>在派生类中重新定义基类方法 （可以定义不同方法）</li>
+<li>虚函数 （可以使基类引用或指针可以调用派生类新定义的方法）</li>
+</ol>
+<ul>
+<li><p>虚函数基本语法？<br>在需要重新定义的方法前添加关键字 virtual，然后分别定义即可。</p>
+</li>
+<li><p>编译器如何确定作者想使用哪种方法？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	virtual void show();  //具体定义就不写了，反正和派生类不一样</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	virtual void show();  </div><div class="line">&#125;;</div><div class="line">person temp_person(……);  //构造函数，实例化一个对象</div><div class="line">student temp_student(……);</div><div class="line">temp_person.show();    //person::show()</div><div class="line">temp_student.show();   //student::show()</div><div class="line">person &amp; temp_s = temp_student; </div><div class="line">person &amp; temp_p = temp_person;</div><div class="line">temp_s.show();         //person::show()</div><div class="line">temp_p.show();         //student::show()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如上述代码所示，基类和派生类有不一样的方法，那么我在使用的时候，我怎么判断调用的是哪个方法。<br>如果使用virtual,根据引用或指针指向的对象类型来选择方法。<br>如果不是使用virtual，根据引用或指针的类型来选择方法。（这个没有太懂，来自C++ primer plus p493，如果重名了，参数列表还相同……感觉死机了额）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	void show();  </div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	void show();  //这里涉及隐藏规则，具体在 effective C++ third edition p156</div><div class="line">&#125;;</div><div class="line">person temp_person(……);  //构造函数，实例化一个对象</div><div class="line">student temp_student(……);</div><div class="line">temp_person.show();    //person::show()</div><div class="line">temp_student.show();   //student::show()</div><div class="line">person &amp; temp_s = temp_student; </div><div class="line">person &amp; temp_p = temp_person;</div><div class="line">temp_s.show();         //person::show()  </div><div class="line">temp_p.show();         //person::show()  这里不确定呀</div></pre></td></tr></table></figure></p>
+<ul>
+<li>实现原理<br>如果使用了虚函数，编译器将给<b>每个对象</b>添加一个隐藏成员，这个隐藏成员保存了一个指向函数地址数组的指针。而这个被指向的函数地址数组，我们叫做虚函数表(virtual function table, vtbl)。<br>虚函数表存储了为类对象进行申明的虚函数地址。例如基类对象包含一个指针，该指针指向一个装有虚函数地址的数组，这个数组中把每个基类虚函数的地址都存储起来；一个派生类对象也包含一个指针，同样指向装有虚函数地址的数组，这个数组不仅包含了基类的虚函数地址，也包含了派生类的虚函数地址。同时如果派生类对象中虚函数重新定义了，那么派生类的虚函数表中该虚函数的地址被更新；如果派生类中没有对基类虚函数重新定义，那么虚函数表中将存储虚函数原始版本的地址（就是基类版本）；如果派生类对象新定义了虚函数，该虚函数地址将被添加到虚函数表中。<br>如果还不明白，如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class Scientist&#123;</div><div class="line">	...</div><div class="line">	char name[40];</div><div class="line">public:</div><div class="line">	virtual void show_name();</div><div class="line">	virtual void show_all();</div><div class="line">	...</div><div class="line">&#125;;</div><div class="line">class Physicist : public Scientist&#123;</div><div class="line">	</div><div class="line">	...</div><div class="line">	char field[40];</div><div class="line">public:</div><div class="line">	void show_all();           //重定义了基类方法，vtbl将改变原本指向的地址</div><div class="line">	virtual void show_field(); //new function</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://oapeb119y.bkt.clouddn.com/image/CPP/virtual_function%E8%99%9A%E5%87%BD%E6%95%B0%E6%9C%BA%E5%88%B6.png" alt="虚函数工作机制"></p>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/12/CPP/虚函数的工作原理/" data-id="cj0to3l91000oq74ua3jc6hzn" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CPP/模板的具体化和实例化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/CPP/模板的具体化和实例化/" class="article-date">
+  <time datetime="2017-03-11T23:08:12.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/CPP/模板的具体化和实例化/">模板的具体化和实例化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>什么是模板的具体化和实例化呢？有以下模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">template &lt;typename T&gt;</div><div class="line">void Swap(T &amp;a, T &amp;b);</div><div class="line"></div><div class="line">template &lt;typename T&gt; void Swap(T &amp;a, T  &amp;b)</div><div class="line">&#123;</div><div class="line">	T temp;</div><div class="line">	temp = a;</div><div class="line">	a = b;</div><div class="line">	b = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	using namespace std;</div><div class="line">	int i = 10;</div><div class="line">	int j = 20;</div><div class="line">	Swap(i, j);   // 标志1</div><div class="line">	...</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在上面的模板函数声明中，声明一个交换类型为T的两个元素。代码包含函数模板并不会生产函数定义，它只是一个用于生产函数定义的方案。当编译器使用模板为特定类型生产函数定义时（程序标志1处），得到的是<b>模板实例化</b>，值得注意的是这里实例化的方式为隐式实例化，因为编译器发现你用的int类型参数，所以就隐式实例化。<br>在C++中，还有一种实例化方式：<b>显式实例化</b>，语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template void Swap&lt;int&gt;(int, int);  //显式实例化</div></pre></td></tr></table></figure></p>
+<p>与实例化不太一样的是<b>显式具体化</b>,具体的声明语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;&gt; void Swap(int &amp;, int &amp;);</div><div class="line">template &lt;&gt; void Swap&lt;int&gt;(int &amp;, int &amp;);</div></pre></td></tr></table></figure></p>
+<p>显示具体化不同的是：需要专门为int类型显式地定义函数定义，显式具体化声明在关键字template后包含&lt;&gt;,而显式实例化没有。</p>
+<p>此时，我们会发现有很多不同的函数定义，那么我们使用某个函数的时候，编译器到底使用的哪个函数原型呢？ 编译器选择原型的时候，非模板函数版本 &gt; 显式具体化 &gt; 通用模板版本。</p>
+<p>另外一点，同一个类型的显示实例化和显式具体化不能同时使用，会出错。</p>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/12/CPP/模板的具体化和实例化/" data-id="cj0to3l8n000iq74ub4er8a4k" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CPP/CPP中如何输出char型指针地址" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/CPP/CPP中如何输出char型指针地址/" class="article-date">
+  <time datetime="2017-03-11T23:07:40.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/CPP/CPP中如何输出char型指针地址/">C++中如何输出char型指针地址</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>C++ 中std::cout对于char类型的指针，将默认输出这个类型指向的字符串，也就是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">char * temp = &quot;Hello, CPP.\n&quot;;</div><div class="line">std::cout &lt;&lt; temp &lt;&lt; endl;</div><div class="line"></div><div class="line">OUTPUT:  Hello, CPP</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>那么我们要想输出这个字符串的地址怎么办？？？</p>
+<ul>
+<li>首先，我们要清楚为什么会这样呢，因为如果是int类型的指针就不会呀。这是因为C++标准库中IO类对’&lt;&lt;’运算符进行了重载，因此呢， 在遇到 char * 类型数据的时候，就自动使用相应的重载函数，把那个char型指针指向的字符串输出了。</li>
+<li><p>那么，How 2 solve this problem? 类型转换呀，你把它转换为int型指针？ 这是可以的， 但是这时下策。使用’static_cast<const void="" *="">‘,把char型指针转换为无类型指针。如下：</const></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">char * temp = &quot;Hello, CPP.\n&quot;;</div><div class="line">std::cout &lt;&lt; temp &lt;&lt; endl;</div><div class="line">std::cout &lt;&lt; static_cast&lt;const void *&gt;(temp) &lt;&lt; endl;</div><div class="line">OUTPUT:  </div><div class="line">Hello, CPP</div><div class="line">某个地址</div></pre></td></tr></table></figure>
+</li>
+<li><p>一些学渣还会有疑问，static_cast&lt;&gt;()这是什么鬼？那么拾起那么《C++ primer》，你会发现C++还是很有趣的。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/12/CPP/CPP中如何输出char型指针地址/" data-id="cj0to3l7v0006q74udbddxq7w" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CPP/派生类与基类之间的特殊关系" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/CPP/派生类与基类之间的特殊关系/" class="article-date">
+  <time datetime="2017-03-11T22:51:52.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/CPP/派生类与基类之间的特殊关系/">派生类与基类之间的特殊关系</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>继承是C++中一项非常重要的特性，继承派生使得C++的代码重用实现可能。基类与其派生类之间也有着较为特殊的关系<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">private:</div><div class="line">	string name;</div><div class="line">	double height;</div><div class="line">public:</div><div class="line">	void Funciton_One();</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">private:</div><div class="line">	int student_ID;</div><div class="line">public:</div><div class="line">	void Funciton_TWo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>由上述简要代码可以知道，student类从person类派生出来，继承了person类的实现（存储了基类数据成员）与接口（可以使用基类方法）。<br><b>重点</b><br>基类指针可以在不进行显式转换的情况下，指向派生类对象；同理，<br>基类引用也可以在不进行显式转换的情况下引用派生类对象。<br>但是，反过来确实不允许的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">person Zhang(……);</div><div class="line">student Lee(……)；</div><div class="line">person * Temp1 = &amp;Lee; // Allowed</div><div class="line">person &amp; Temp2 = Lee;  // Allowed</div><div class="line">student * temp1 = &amp;Zhang; // Not Allowed</div><div class="line">student &amp; temp2 = Zhang;  // Not Allowed</div></pre></td></tr></table></figure></p>
+<p>从上面代码可以看出这一特殊的关系。虽然基类引用和指针可以引用和指向派生类对象，但是基类引用和指针只能调用基类方法。这也正常，你试想，使用基类引用为派生类对象调用基类方法，显然是可以的，因为派生类继承了基类方法；相反，如果使用派生类引用为基类对象调用派生类方法，这明显会发生错误。<br>这一关系也存在于以基类引用（指针）作为形参的函数。</p>
+
+      
+    </div>
+
+    <footer class="article-footer">
+     <a data-url="http://newbird.cn/2017/03/12/CPP/派生类与基类之间的特殊关系/" data-id="cj0to3l870009q74ukmtxyopr" class="article-share-link">Share</a>
+    <!--  
+	
+   -->
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+ 
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-OpenCV/HigtGUI的初识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/01/OpenCV/HigtGUI的初识/" class="article-date">
   <time datetime="2017-02-28T22:48:02.000Z" itemprop="datePublished">2017-03-01</time>
 </a>
     
@@ -88,7 +539,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/01/HigtGUI的初识/">HigtGUI的初识</a>
+      <a class="article-title" href="/2017/03/01/OpenCV/HigtGUI的初识/">HigtGUI的初识</a>
     </h1>
   
 
@@ -103,19 +554,19 @@
 <p>但是OpenCV3中这些宏都失效，故采用数字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Mat img = imread(&quot;pic.jpg&quot;,2|4)  //载入无损的源图像</div></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
-            <a href="/2017/03/01/HigtGUI的初识/#more">Read More</a>
+            <a href="/2017/03/01/OpenCV/HigtGUI的初识/#more">Read More</a>
           </p>
         
       
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/01/HigtGUI的初识/" data-id="cizq5758w000k1s4uxk6wforb" class="article-share-link">Share</a>
+     <a data-url="http://newbird.cn/2017/03/01/OpenCV/HigtGUI的初识/" data-id="cj0to3lag001aq74u85f56jy6" class="article-share-link">Share</a>
     <!--  
 	
    -->
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
 
     </footer>
  
@@ -126,9 +577,9 @@
 
 
   
-    <article id="post-c-成员运算符" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CPP/c-成员运算符" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/29/c-成员运算符/" class="article-date">
+    <a href="/2016/12/29/CPP/c-成员运算符/" class="article-date">
   <time datetime="2016-12-29T15:49:13.000Z" itemprop="datePublished">2016-12-29</time>
 </a>
     
@@ -144,7 +595,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/c-成员运算符/">c++成员运算符</a>
+      <a class="article-title" href="/2016/12/29/CPP/c-成员运算符/">c++成员运算符</a>
     </h1>
   
 
@@ -170,7 +621,7 @@
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/29/c-成员运算符/" data-id="cizq575bd001j1s4udte55wn6" class="article-share-link">Share</a>
+     <a data-url="http://newbird.cn/2016/12/29/CPP/c-成员运算符/" data-id="cj0to3l8j000fq74uqvv04zxj" class="article-share-link">Share</a>
     <!--  
 	
    -->
@@ -186,9 +637,9 @@
 
 
   
-    <article id="post-sizeof-和-strlen的区别" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CPP/sizeof-和-strlen的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/29/sizeof-和-strlen的区别/" class="article-date">
+    <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/" class="article-date">
   <time datetime="2016-12-29T15:39:01.000Z" itemprop="datePublished">2016-12-29</time>
 </a>
     
@@ -204,7 +655,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
+      <a class="article-title" href="/2016/12/29/CPP/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
     </h1>
   
 
@@ -225,446 +676,19 @@
 <p>输出的结果是 <code>sizeof(short)</code> ，即2。 </p>
         
           <p class="article-more-link">
-            <a href="/2016/12/29/sizeof-和-strlen的区别/#more">Read More</a>
+            <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/#more">Read More</a>
           </p>
         
       
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/29/sizeof-和-strlen的区别/" data-id="cizq575bo001m1s4ub49cqzd9" class="article-share-link">Share</a>
+     <a data-url="http://newbird.cn/2016/12/29/CPP/sizeof-和-strlen的区别/" data-id="cj0to3l800007q74unu2yfcdp" class="article-share-link">Share</a>
     <!--  
 	
    -->
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-C-指针注意事项" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/29/C-指针注意事项/" class="article-date">
-  <time datetime="2016-12-29T15:34:47.000Z" itemprop="datePublished">2016-12-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/C-指针注意事项/">C++指针注意事项</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>一定要在对指针使用解除运算符（*）之前，将指针初始化为一个确定的适当的地址，这是关于使用指针的金科玉律。</p>
-</li>
-<li><p>使用delete的关键在于，将他用于new分配的内存。这并不意味这要使用用于new的指针，而是用于new分配的地址。<br><b>Example:</b></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> *ps = <span class="keyword">new</span> <span class="keyword">int</span>;    <span class="comment">//allocate memory</span></div><div class="line"><span class="keyword">int</span> *pq = ps;         <span class="comment">//set second pointer to same block</span></div><div class="line"><span class="keyword">delete</span> pq;			  <span class="comment">//delete with second pointer</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>以上方法为同一使用new分配的空间，创建了两个指针，通常不会这么做，这将增加删除同一内存块两次的可能性。遵守</p>
-<ul>
-<li>使用new和delete时，需要以下规则。</li>
-</ul>
-<ol>
-<li>不要使用delete来释放不是new分配的内存；</li>
-<li>不要使用delete释放同一个内存块两次；</li>
-<li>如果使用new []为数组分配内存，则应使用delete []来释放</li>
-<li>如果使用new []为一个实体分配内存，则应使用delete来释放</li>
-<li>对空指针使用delete是安全的</li>
-</ol>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/29/C-指针注意事项/" data-id="cizq5758r000h1s4ughm1cl5e" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-414-the-third-maxium-number" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/28/414-the-third-maxium-number/" class="article-date">
-  <time datetime="2016-12-28T15:26:04.000Z" itemprop="datePublished">2016-12-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/28/414-the-third-maxium-number/">414. the third maxium number</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).<br><b>Example 1:</b><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: The third maximum is <span class="number">1.</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><b>Example 2:</b><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1, 2]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: The third maximum does not exist, so the maximum (2) is returned instead.</div></pre></td></tr></table></figure></p>
-<p><b>Example 3:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: Note that the third maximum here means the third maximum distinct number.</div><div class="line">Both numbers with value <span class="number">2</span> are both considered as second maximum.</div></pre></td></tr></table></figure></p>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
-<li>翻译：给一个非空整型数组，返回第三大的数字，如果不存在则返回最大的数字，要求时间复杂度为0（n）
-        
-          <p class="article-more-link">
-            <a href="/2016/12/28/414-the-third-maxium-number/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/28/414-the-third-maxium-number/" data-id="cizq5758200061s4umauum55w" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-1-two-sum" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/26/1-two-sum/" class="article-date">
-  <time datetime="2016-12-26T15:35:23.000Z" itemprop="datePublished">2016-12-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/26/1-two-sum/">1.two sum</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
-</li>
-<li><p>You may assume that each input would have exactly one solution.</p>
-</li>
-</ul>
-<p><b>Example:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</div><div class="line"></div><div class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</div><div class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</div></pre></td></tr></table></figure></p>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1>
-        
-          <p class="article-more-link">
-            <a href="/2016/12/26/1-two-sum/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/26/1-two-sum/" data-id="cizq5756t00001s4uzpx1cghy" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-461-hamming-distance-md" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/23/461-hamming-distance-md/" class="article-date">
-  <time datetime="2016-12-23T02:11:23.000Z" itemprop="datePublished">2016-12-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/23/461-hamming-distance-md/">461.hamming distance</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
-</li>
-<li><p>Given two integers x and y, calculate the Hamming distance.</p>
-</li>
-</ul>
-<p><b>Note</b>:<br>0 ≤ x, y &lt; 2^31.</p>
-<p><b>Example</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line"></div><div class="line">The above arrows point to positions where the corresponding bits are different.</div></pre></td></tr></table></figure></p>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
-<li><b>翻译</b>：Hanmming Distance 就是两个整数[0 2^31]二进制表示对应位上不同位数的个数。给定X,Y求取两者的hamming distance
-        
-          <p class="article-more-link">
-            <a href="/2016/12/23/461-hamming-distance-md/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/23/461-hamming-distance-md/" data-id="cizq5758h000c1s4uvliqg80w" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-442-find-all-duplicates-in-an-array-md" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/23/442-find-all-duplicates-in-an-array-md/" class="article-date">
-  <time datetime="2016-12-23T02:09:57.000Z" itemprop="datePublished">2016-12-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/23/442-find-all-duplicates-in-an-array-md/">442.find all duplicates in an array</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.</p>
-</li>
-<li><p>Find all the elements that appear twice in this array.</p>
-</li>
-<li><p>Could you do it without extra space and in O(n) runtime?</p>
-</li>
-</ul>
-<p><b>Example:</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[2,3]</div></pre></td></tr></table></figure></p>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
-<li>翻译：一个整型数组，[1,n]其中n为数组大小，其中有些元素出现2次，有些出现1次，求出现2次的元素，0(n)复杂度
-        
-          <p class="article-more-link">
-            <a href="/2016/12/23/442-find-all-duplicates-in-an-array-md/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/23/442-find-all-duplicates-in-an-array-md/" data-id="cizq5758c000a1s4u1mfyaxl5" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-412-fizz-buzz-md" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/23/412-fizz-buzz-md/" class="article-date">
-  <time datetime="2016-12-23T02:09:06.000Z" itemprop="datePublished">2016-12-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/23/412-fizz-buzz-md/">412. fizz buzz</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>Write a program that outputs the string representation of numbers from 1 to n.</p>
-</li>
-<li><p>But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
-</li>
-</ul>
-<p><b>Example:</b><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">n = <span class="number">15</span>,</div><div class="line"></div><div class="line">Return:</div><div class="line">[</div><div class="line">    <span class="string">"1"</span>,</div><div class="line">    <span class="string">"2"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"4"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"7"</span>,</div><div class="line">    <span class="string">"8"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"11"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"13"</span>,</div><div class="line">    <span class="string">"14"</span>,</div><div class="line">    <span class="string">"FizzBuzz"</span></div><div class="line">]</div></pre></td></tr></table></figure></p>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
-<li>翻译：写一个程序输出1到n的字符串表达，但是 如果是3的倍数，不输出对应数字的字符串，而是输出“Fizz” ，如果是5的倍数，不输出对应数字的字符串，而是输出“Buzz”， 若同时是3和5的倍数，则输出 “FizzBuzz”。
-        
-          <p class="article-more-link">
-            <a href="/2016/12/23/412-fizz-buzz-md/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/23/412-fizz-buzz-md/" data-id="cizq5758600081s4ufy7xydfu" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-202-happy-number-md" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/23/202-happy-number-md/" class="article-date">
-  <time datetime="2016-12-23T02:08:24.000Z" itemprop="datePublished">2016-12-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/23/202-happy-number-md/">202.happy number</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>write an algorithm to determine if a number is ‘happy’</p>
-</li>
-<li><p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay),or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
-</li>
-</ul>
-<p><b>Example:</b> 19 is a happy number</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1^2 + 9^2 = 82</div><div class="line">8^2 + 2^2 = 68</div><div class="line">6^2 + 8^2 = 100</div><div class="line">1^2 + 0^2 + 0^2 = 1</div></pre></td></tr></table></figure>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
-<li><b>翻译</b>： 判断一个正整数是否为一个happy-number，一个正整数各位的平方和代替次正整数，不断迭代，如果迭代出1，则为happy-number，否则不是而且会出现无限循环。
-        
-          <p class="article-more-link">
-            <a href="/2016/12/23/202-happy-number-md/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/23/202-happy-number-md/" data-id="cizq5757s00051s4ut2im6f9n" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
 
     </footer>
  
@@ -678,21 +702,21 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.tags.length){ %>
+    
   <div class="widget-wrap">
     <h2 class="widget-title"><b>关于我</b></h2>
     <div class="widget">
- <front size="3"><b>邮箱</b>：　liangzelang@gmail.com<br>
+ <front size="3"><b>邮箱</b>：liangzelang@gmail.com<br>
  <b>现状</b>： 目前北京理工大学模式识别硕士在读，2018年毕业。个人喜欢图像处理、计算机视觉、机器学习等领域。我的<a href="http://oapeb119y.bkt.clouddn.com/%E9%99%84%E4%BB%B6%E4%BA%8C%EF%BC%9A%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.pdf">个人简历</a></front>
     </div>
   </div>
-<% } %>
+
 
   
     
@@ -712,23 +736,23 @@
       <ul>
         
           <li>
-            <a href="/2017/03/01/HigtGUI的初识/">HigtGUI的初识</a>
+            <a href="/2017/03/28/OpenCV/core组件进阶/">core组件进阶</a>
           </li>
         
           <li>
-            <a href="/2016/12/29/c-成员运算符/">c++成员运算符</a>
+            <a href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/">OpenCV数据结构与基本绘图</a>
           </li>
         
           <li>
-            <a href="/2016/12/29/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
+            <a href="/2017/03/12/CPP/虚析构函数的作用/">虚析构函数的作用</a>
           </li>
         
           <li>
-            <a href="/2016/12/29/C-指针注意事项/">C++指针注意事项</a>
+            <a href="/2017/03/12/CPP/虚函数的工作原理/">虚函数的工作原理</a>
           </li>
         
           <li>
-            <a href="/2016/12/28/414-the-third-maxium-number/">414. the third maxium number</a>
+            <a href="/2017/03/12/CPP/模板的具体化和实例化/">模板的具体化和实例化</a>
           </li>
         
       </ul>
@@ -740,7 +764,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/OpenCV基础/" style="font-size: 10px;">OpenCV基础</a> <a href="/tags/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tags/c/" style="font-size: 15px;">c++</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/数据结构与算法/" style="font-size: 20px;">数据结构与算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/OpenCV基础/" style="font-size: 13.33px;">OpenCV基础</a> <a href="/tags/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/leetcode/" style="font-size: 16.67px;">leetcode</a> <a href="/tags/数据结构与算法/" style="font-size: 16.67px;">数据结构与算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -749,7 +773,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
   </div>
 
