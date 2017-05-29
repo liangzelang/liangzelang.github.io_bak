@@ -69,51 +69,81 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-CPP/派生类与基类之间的特殊关系" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2017/03/12/CPP/派生类与基类之间的特殊关系/" class="article-date">
+  <time datetime="2017-03-11T22:51:52.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      派生类与基类之间的特殊关系
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <ul>
+<li>继承是C++中一项非常重要的特性，继承派生使得C++的代码重用实现可能。基类与其派生类之间也有着较为特殊的关系<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">private:</div><div class="line">	string name;</div><div class="line">	double height;</div><div class="line">public:</div><div class="line">	void Funciton_One();</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">private:</div><div class="line">	int student_ID;</div><div class="line">public:</div><div class="line">	void Funciton_TWo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>由上述简要代码可以知道，student类从person类派生出来，继承了person类的实现（存储了基类数据成员）与接口（可以使用基类方法）。<br><b>重点</b><br>基类指针可以在不进行显式转换的情况下，指向派生类对象；同理，<br>基类引用也可以在不进行显式转换的情况下引用派生类对象。<br>但是，反过来确实不允许的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">person Zhang(……);</div><div class="line">student Lee(……)；</div><div class="line">person * Temp1 = &amp;Lee; // Allowed</div><div class="line">person &amp; Temp2 = Lee;  // Allowed</div><div class="line">student * temp1 = &amp;Zhang; // Not Allowed</div><div class="line">student &amp; temp2 = Zhang;  // Not Allowed</div></pre></td></tr></table></figure></p>
+<p>从上面代码可以看出这一特殊的关系。虽然基类引用和指针可以引用和指向派生类对象，但是基类引用和指针只能调用基类方法。这也正常，你试想，使用基类引用为派生类对象调用基类方法，显然是可以的，因为派生类继承了基类方法；相反，如果使用派生类引用为基类对象调用派生类方法，这明显会发生错误。<br>这一关系也存在于以基类引用（指针）作为形参的函数。</p>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2017/03/12/CPP/派生类与基类之间的特殊关系/" data-id="cj3aal9rz000f094ujh7elgph" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/12/CPP/CPP中如何输出char型指针地址/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++中如何输出char型指针地址
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/01/OpenCV/HigtGUI的初识/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HigtGUI的初识</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-CPP/派生类与基类之间的特殊关系" data-title="派生类与基类之间的特殊关系" data-url="http://newbird.cn/2017/03/12/CPP/派生类与基类之间的特殊关系/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -129,7 +159,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

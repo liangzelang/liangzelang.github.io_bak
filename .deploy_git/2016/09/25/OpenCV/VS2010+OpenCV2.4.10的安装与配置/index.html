@@ -88,51 +88,102 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-OpenCV/VS2010+OpenCV2.4.10的安装与配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" class="article-date">
+  <time datetime="2016-09-24T22:56:32.000Z" itemprop="datePublished">2016-09-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VS2010+OpenCV2.4.10的安装与配置
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <p>由于本人最近要做图像处理的一些工作，因此将相应的流程记录备份，方便自己，也为他人提供一个思路吧。<br><br>平台操作系统： Win7 32位 旗舰版<br></p>
+<h2 id="1、VS2010的安装"><a href="#1、VS2010的安装" class="headerlink" title="1、VS2010的安装"></a>1、VS2010的安装</h2><p>直接点击 AutoRun.exe或者Setup.exe按照提示一步步安装即可。需要选择安装那些模块，按自己的开发需要选择，如果实在不懂，全部安装。<br></p>
+<h2 id="2、OpenCV的安装"><a href="#2、OpenCV的安装" class="headerlink" title="2、OpenCV的安装"></a>2、OpenCV的安装</h2><p>我用的是OpenCV2.4.10，安装非常简单。只要选择安装位置就可以自动完成，如图1。需要记住该安装地址（本文假设安装在D盘根目录下 D:\）。<br><img src="http://oapeb119y.bkt.clouddn.com/1.png" alt="图1"><br><img src="http://oapeb119y.bkt.clouddn.com/2.png" alt="图2"></p>
+<h2 id="3、OpenCV的配置"><a href="#3、OpenCV的配置" class="headerlink" title="3、OpenCV的配置"></a>3、OpenCV的配置</h2><a id="more"></a>
+<h3 id="3-1、系统环境变量的配置"><a href="#3-1、系统环境变量的配置" class="headerlink" title="3.1、系统环境变量的配置"></a>3.1、系统环境变量的配置</h3><p>OpenCV其实就是开源视觉库，要让开发环境找到并使用这个库，需要将OpenCV的路径添加到系统的PATH环境变量。具体方法：<b>我的电脑——&gt;属性——&gt;高级——&gt;环境变量——PATH变量<b><br><br>编辑PATH环境变量，在最后加入 Opencv的路径(本文假设安装在D:\下面，需要根据自己安装路径更改)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">;D:\opencv\build\x86\vc10\bin</div></pre></td></tr></table></figure></b></b></p>
+<p><b>不要遗忘分号 ；<b></b></b></p>
+<h2 id="3-2、VS2010工程的相关配置"><a href="#3-2、VS2010工程的相关配置" class="headerlink" title="3.2、VS2010工程的相关配置"></a>3.2、VS2010工程的相关配置</h2><p>工程要使用OpenCV库，就需要在工程中把库的相关路径包含进去。<br>有两种方法，一种是在某个工程下包含相应路径，但是这样每建一个目录就需要重新包含一次，非常繁琐。<b>本文采用第二种方法,包含一次，以后建立工程就不用反复添加<b>：</b></b></p>
+<ul>
+<li>新建项目：<b>文件–&gt;新建–&gt;项目–&gt;选择Win32控制台程序–&gt;确定<b>（本文项目名叫做test，后文要用）<br><img src="http://oapeb119y.bkt.clouddn.com/3.png" alt="图3"><br><img src="http://oapeb119y.bkt.clouddn.com/4.png" alt="图4"></b></b></li>
+<li>包含目录和库目录配置: 在新建的工程页面 <b>菜单栏–&gt;视图–&gt;属性管理器–&gt;Debug|Microsoft.cpp.win32.user(右键属性)，弹出属性页–&gt;VC++目录<b>，分别修改包含目录和库目录。<br><img src="http://oapeb119y.bkt.clouddn.com/5.png" alt="图5"><br><img src="http://oapeb119y.bkt.clouddn.com/6.png" alt="图6"><br><img src="http://oapeb119y.bkt.clouddn.com/7.png" alt="图7"><br><img src="http://oapeb119y.bkt.clouddn.com/8.png" alt="图8"></b></b></li>
+<li>包含目录配置&lt;&gt;<br>添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">D:\opencv\build\include</div><div class="line">D:\opencv\build\include\opencv</div><div class="line">D:\opencv\build\include\opencv2</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这三个路径，如图九所示。<br>注意，根据自己不同的路径修改。<br><img src="http://oapeb119y.bkt.clouddn.com/9.png" alt="图9"></p>
+<ul>
+<li><b>库目录配置<br>添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D:\opencv\build\x86\vc10\lib</div></pre></td></tr></table></figure>
+</b></li>
+</ul>
+<p>这个路径。</p>
+<ul>
+<li>链接器配置<br>在<b>属性页–&gt;链接器–&gt;输入–&gt;附加依赖项<b>添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">opencv_calib3d2410.lib</div><div class="line">opencv_contrib2410.lib</div><div class="line">opencv_core2410.lib</div><div class="line">opencv_features2d2410.lib</div><div class="line">opencv_flann2410.lib</div><div class="line">opencv_gpu2410.lib</div><div class="line">opencv_highgui2410.lib</div><div class="line">opencv_imgproc2410.lib</div><div class="line">opencv_legacy2410.lib</div><div class="line">opencv_ml2410.lib</div><div class="line">opencv_nonfree2410.lib</div><div class="line">opencv_objdetect2410.lib</div><div class="line">opencv_ocl2410.lib</div><div class="line">opencv_photo2410.lib</div><div class="line">opencv_stitching2410.lib</div><div class="line">opencv_superres2410.lib</div><div class="line">opencv_ts2410.lib</div><div class="line">opencv_video2410.lib</div><div class="line">opencv_videostab2410.lib</div><div class="line">opencv_calib3d2410d.lib</div><div class="line">opencv_contrib2410d.lib</div><div class="line">opencv_core2410d.lib</div><div class="line">opencv_features2d2410d.lib</div><div class="line">opencv_flann2410d.lib</div><div class="line">opencv_gpu2410d.lib</div><div class="line">opencv_highgui2410d.lib</div><div class="line">opencv_imgproc2410d.lib</div><div class="line">opencv_legacy2410d.lib</div><div class="line">opencv_ml2410d.lib</div><div class="line">opencv_nonfree2410d.lib</div><div class="line">opencv_objdetect2410d.lib</div><div class="line">opencv_ocl2410d.lib</div><div class="line">opencv_photo2410d.lib</div><div class="line">opencv_stitching2410d.lib</div><div class="line">opencv_superres2410d.lib</div><div class="line">opencv_ts2410d.lib</div><div class="line">opencv_video2410d.lib</div><div class="line">opencv_videostab2410d.lib</div></pre></td></tr></table></figure>
+</b></b></li>
+</ul>
+<p>即可。至此所有配置都完成。<br><img src="http://oapeb119y.bkt.clouddn.com/10.png" alt="图10"></p>
+<h2 id="测试安装和配置是否成功"><a href="#测试安装和配置是否成功" class="headerlink" title="测试安装和配置是否成功"></a>测试安装和配置是否成功</h2><p>在之前创建test项目，打开test.cpp,编写如下测试程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/***********************************************************************</div><div class="line">* OpenCV 2.4.10 测试例程</div><div class="line">* 梁泽浪提供</div><div class="line">***********************************************************************/</div><div class="line">#include&quot;stdafx.h&quot;</div><div class="line">#include &lt;opencv2/opencv.hpp&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">using namespace cv;</div><div class="line"></div><div class="line">int main(int argc, char*argv[])</div><div class="line">&#123;</div><div class="line">	IplImage* pImg;  </div><div class="line"></div><div class="line">    if ((pImg = cvLoadImage(&quot;C:\\Users\\liangzelang\\Desktop\\lena.jpg&quot;, 1)) != 0)  </div><div class="line">    &#123;  </div><div class="line">        cvNamedWindow (&quot;Image&quot;, 1);  </div><div class="line">        cvMoveWindow (&quot;Image&quot;, 0, 0);  </div><div class="line">        cvShowImage (&quot;Image&quot;, pImg);  </div><div class="line">        cvWaitKey (0);  </div><div class="line">        cvDestroyWindow (&quot;Image&quot;);  </div><div class="line">        cvReleaseImage (&amp;pImg);  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要注意的是cvLoadImage(“C:\Users\liangzelang\Desktop\lena.jpg”,1)中的图片地址的写法。<br><br><img src="http://oapeb119y.bkt.clouddn.com/11.png" alt="图11"><br><img src="http://oapeb119y.bkt.clouddn.com/12.png" alt="图12"><br>最后,一切OK。尽情享受OpenCV吧。</p>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" data-id="cj3aal9ur001r094uxkdi77n4" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2010/">VS2010</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux下gedit打开文件产生带波浪号（～）的备份文件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/21/Summary/test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">博客更新日志</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-OpenCV/VS2010+OpenCV2.4.10的安装与配置" data-title="VS2010+OpenCV2.4.10的安装与配置" data-url="http://newbird.cn/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -148,7 +199,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

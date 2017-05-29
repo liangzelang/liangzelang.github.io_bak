@@ -75,51 +75,88 @@ A happy number is a number defined by the following process: Starting with any p
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Leetcode/202-happy-number-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/202-happy-number-md/" class="article-date">
+  <time datetime="2016-12-23T02:08:24.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      202.happy number
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <ul>
+<li><p>write an algorithm to determine if a number is ‘happy’</p>
+</li>
+<li><p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay),or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+</li>
+</ul>
+<p><b>Example:</b> 19 is a happy number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1^2 + 9^2 = 82</div><div class="line">8^2 + 2^2 = 68</div><div class="line">6^2 + 8^2 = 100</div><div class="line">1^2 + 0^2 + 0^2 = 1</div></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>： 判断一个正整数是否为一个happy-number，一个正整数各位的平方和代替次正整数，不断迭代，如果迭代出1，则为happy-number，否则不是而且会出现无限循环。<a id="more"></a></li>
+<li><b>思路</b>：写一个函数分离正整数的各位，计算平方和并返回，主函数中需要有两类迭代，一类迭代每次迭代一次，一类迭代两次，这两如果出现无限重复循环肯定OK；循环结束的条件为迭代结果为1（这就是happy number）或者两类迭代结果相等（出现无限重复循环，不是happy number）。</li>
+</ul>
+<h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(n) &#123;</div><div class="line">        i=n%<span class="number">10</span>;</div><div class="line">        n=n/<span class="number">10</span>;</div><div class="line">        sum=sum+i*i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> temp=n;</div><div class="line">    <span class="keyword">bool</span> overflag=<span class="literal">true</span>;</div><div class="line">    <span class="keyword">bool</span> flag=<span class="literal">true</span>;</div><div class="line">    <span class="keyword">int</span> temp1= temp;   </div><div class="line">    <span class="keyword">while</span>(overflag) &#123;</div><div class="line">      temp = sum(temp); </div><div class="line">      temp1=sum(temp1);</div><div class="line">      temp1=sum(temp1);</div><div class="line">      <span class="keyword">if</span>(temp1==<span class="number">1</span>) &#123;       </div><div class="line">          flag=<span class="literal">true</span>;</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span>(temp==temp1) &#123;   </div><div class="line">          flag=<span class="literal">false</span>;</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> flag;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2>
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/202-happy-number-md/" data-id="cj3aal9t1000u094uvf9x8xjp" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/23/Leetcode/412-fizz-buzz-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          412. fizz buzz
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux下gedit打开文件产生带波浪号（～）的备份文件</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-Leetcode/202-happy-number-md" data-title="202.happy number" data-url="http://newbird.cn/2016/12/23/Leetcode/202-happy-number-md/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -135,7 +172,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">
