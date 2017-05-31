@@ -21,7 +21,7 @@
 那么我们要想输出这个字符串的地址怎么办？？？
 
 首先，我们要清楚为什么会这样呢，因为如果是int类">
-<meta property="og:updated_time" content="2017-05-31T07:15:36.698Z">
+<meta property="og:updated_time" content="2017-05-31T07:31:01.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++中如何输出char型指针地址">
 <meta name="twitter:description" content="C++ 中std::cout对于char类型的指针，将默认输出这个类型指向的字符串，也就是：1234char * temp = &amp;quot;Hello, CPP.\n&amp;quot;;std::cout &amp;lt;&amp;lt; temp &amp;lt;&amp;lt; endl;OUTPUT:  Hello, CPP
@@ -84,88 +84,51 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-CPP/CPP中如何输出char型指针地址" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/12/CPP/CPP中如何输出char型指针地址/" class="article-date">
-  <time datetime="2017-03-11T23:07:40.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      C++中如何输出char型指针地址
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>C++ 中std::cout对于char类型的指针，将默认输出这个类型指向的字符串，也就是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">char * temp = &quot;Hello, CPP.\n&quot;;</div><div class="line">std::cout &lt;&lt; temp &lt;&lt; endl;</div><div class="line"></div><div class="line">OUTPUT:  Hello, CPP</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>那么我们要想输出这个字符串的地址怎么办？？？</p>
-<ul>
-<li>首先，我们要清楚为什么会这样呢，因为如果是int类型的指针就不会呀。这是因为C++标准库中IO类对’&lt;&lt;’运算符进行了重载，因此呢， 在遇到 char * 类型数据的时候，就自动使用相应的重载函数，把那个char型指针指向的字符串输出了。</li>
-<li><p>那么，How 2 solve this problem? 类型转换呀，你把它转换为int型指针？ 这是可以的， 但是这时下策。使用’static_cast<const void="" *="">‘,把char型指针转换为无类型指针。如下：</const></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">char * temp = &quot;Hello, CPP.\n&quot;;</div><div class="line">std::cout &lt;&lt; temp &lt;&lt; endl;</div><div class="line">std::cout &lt;&lt; static_cast&lt;const void *&gt;(temp) &lt;&lt; endl;</div><div class="line">OUTPUT:  </div><div class="line">Hello, CPP</div><div class="line">某个地址</div></pre></td></tr></table></figure>
-</li>
-<li><p>一些学渣还会有疑问，static_cast&lt;&gt;()这是什么鬼？那么拾起那么《C++ primer》，你会发现C++还是很有趣的。</p>
-</li>
-</ul>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/CPP中如何输出char型指针地址/" data-id="cj3cnxeev0006cn4ujobqdpjp" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/03/12/CPP/模板的具体化和实例化/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          模板的具体化和实例化
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/12/CPP/派生类与基类之间的特殊关系/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">派生类与基类之间的特殊关系</div>
-    </a>
-  
-</nav>
-
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<post-CPP/CPP中如何输出char型指针地址" data-title="C++中如何输出char型指针地址" data-url="http://newbird.cn/2017/03/12/CPP/CPP中如何输出char型指针地址/"></div>
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -181,7 +144,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-
+<% } %>
 </section>
         
           <aside id="sidebar">

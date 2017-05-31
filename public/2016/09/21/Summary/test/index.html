@@ -21,7 +21,7 @@
 2016.08.23 添加About页面，修改页面
 2016.09.21 添加多说评论系统，删除Disqus评论系统
 2016.09.22 规范页面">
-<meta property="og:updated_time" content="2017-05-31T07:15:36.702Z">
+<meta property="og:updated_time" content="2017-05-31T07:31:01.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客更新日志">
 <meta name="twitter:description" content="2016.07.01 采用Github+Hexo方案搭建NewBird博客
@@ -84,84 +84,51 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Summary/test" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/21/Summary/test/" class="article-date">
-  <time datetime="2016-09-21T13:05:02.000Z" itemprop="datePublished">2016-09-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      博客更新日志
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>2016.07.01 采用Github+Hexo方案搭建NewBird博客</li>
-<li>2016.07.05 采用七牛云作为图片存储方案,采用乐视云作为视频存储方案</li>
-<li>2016.08.20 把博客代码分为两个分支，上传至Github，实现在不同设备、平台更新博客</li>
-<li>2016.08.23 添加About页面，修改页面</li>
-<li>2016.09.21 添加多说评论系统，删除Disqus评论系统</li>
-<li>2016.09.22 规范页面，规范文章格式、分类、标签等 </li>
-<li>2016.10.20 coding和github双部署</li>
-</ul>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/09/21/Summary/test/" data-id="cj3cnxei6001gcn4un67mwwsq" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          VS2010+OpenCV2.4.10的安装与配置
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/07/20/Summary/New-Begining/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">菜鸟，新的征程</div>
-    </a>
-  
-</nav>
-
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<post-Summary/test" data-title="博客更新日志" data-url="http://newbird.cn/2016/09/21/Summary/test/"></div>
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -177,7 +144,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-
+<% } %>
 </section>
         
           <aside id="sidebar">

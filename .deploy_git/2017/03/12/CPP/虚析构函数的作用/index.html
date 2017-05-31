@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://newbird.cn/2017/03/12/CPP/虚析构函数的作用/index.html">
 <meta property="og:site_name" content="Zelang Liang">
 <meta property="og:description" content="为什么要使用虚析构函数？如果有这样两个类：123456789101112class person&amp;#123;	person(...);	virtual ~person();	virtual void show();  //具体定义就不写了，反正和派生类不一样&amp;#125;;class student : public person&amp;#123;	virtual void show();  &amp;#125">
-<meta property="og:updated_time" content="2017-05-31T07:15:36.698Z">
+<meta property="og:updated_time" content="2017-05-31T07:31:01.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚析构函数的作用">
 <meta name="twitter:description" content="为什么要使用虚析构函数？如果有这样两个类：123456789101112class person&amp;#123;	person(...);	virtual ~person();	virtual void show();  //具体定义就不写了，反正和派生类不一样&amp;#125;;class student : public person&amp;#123;	virtual void show();  &amp;#125">
@@ -69,80 +69,51 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-CPP/虚析构函数的作用" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/12/CPP/虚析构函数的作用/" class="article-date">
-  <time datetime="2017-03-11T23:09:46.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      虚析构函数的作用
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>为什么要使用虚析构函数？<br>如果有这样两个类：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	person(...);</div><div class="line">	virtual ~person();</div><div class="line">	virtual void show();  //具体定义就不写了，反正和派生类不一样</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	virtual void show();  </div><div class="line">&#125;;</div><div class="line">person temp_p(...);</div><div class="line">student temp_s(...);</div><div class="line">person * temp1 = temp_p;</div><div class="line">person * temp2 = temp_s;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>为了发挥C++多态的特性，我们一般会使用虚函数，采用基类指针或者引用来 对基类对象或者派生类对象进行操作。但是这样会有一个问题，如果析构函数不是虚函数，那么基类指针temp2结束代码段时，就只会调用指针类型(就是基类)的析构函数。如果这个基类指针指向的是派生类对象，那么派生类的析构函数就不会被调用，显然是有一定问题隐患的。<br>因此，使用虚析构函数可以确保正确的析构函数序列被调用。</p>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/虚析构函数的作用/" data-id="cj3cnxegh000rcn4uog3lcnpv" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          OpenCV数据结构与基本绘图
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/12/CPP/虚函数的工作原理/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">虚函数的工作原理</div>
-    </a>
-  
-</nav>
-
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<post-CPP/虚析构函数的作用" data-title="虚析构函数的作用" data-url="http://newbird.cn/2017/03/12/CPP/虚析构函数的作用/"></div>
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -158,7 +129,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-
+<% } %>
 </section>
         
           <aside id="sidebar">

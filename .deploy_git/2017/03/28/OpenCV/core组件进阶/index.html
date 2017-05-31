@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Zelang Liang">
 <meta property="og:description" content="LUT函数： LOOK UP TABLE 操作用于批量元素查找、扫描和操作图像。
 12345678910//首先我们建立一个mat型用于查表Mat lookUpTable(1, 256, CV_8U);uchar* p = lookUpTable.data;for( int i = 0; i &amp;lt; 256; ++ i)&amp;#123;	p[i] = table[i];&amp;#125;//然后我们调用">
-<meta property="og:updated_time" content="2017-05-31T07:15:36.702Z">
+<meta property="og:updated_time" content="2017-05-31T07:31:01.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="core组件进阶">
 <meta name="twitter:description" content="LUT函数： LOOK UP TABLE 操作用于批量元素查找、扫描和操作图像。
@@ -72,88 +72,51 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-OpenCV/core组件进阶" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/28/OpenCV/core组件进阶/" class="article-date">
-  <time datetime="2017-03-28T14:54:25.000Z" itemprop="datePublished">2017-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      core组件进阶
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>LUT函数： LOOK UP TABLE 操作<br>用于批量元素查找、扫描和操作图像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//首先我们建立一个mat型用于查表</div><div class="line">Mat lookUpTable(1, 256, CV_8U);</div><div class="line">uchar* p = lookUpTable.data;</div><div class="line">for( int i = 0; i &lt; 256; ++ i)</div><div class="line">&#123;</div><div class="line">	p[i] = table[i];</div><div class="line">&#125;</div><div class="line">//然后我们调用函数(I 是输入， J 是输出)：</div><div class="line">for(int i = 0; i &lt; times; ++ i)</div><div class="line">	LUT(I, lookUpTable, J);</div></pre></td></tr></table></figure>
-</li>
-<li><p>计时函数<br>‘getTickCount()’函数： 返回CPU自某个时间以来走过的时钟周期；<br>‘getTickFrequency()’函数： 返回CPU一秒钟的时钟周期；<br>故使用以上两个函数可以得到某段程度的运行时间：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">double time1 = static_cast&lt;double&gt;(getTickCount()); //记录起始时间</div><div class="line">// 你的程序...</div><div class="line">time1 = ((double)getTickCount() - time1) / getTickFrequency();</div><div class="line">cout &lt;&lt; &quot;程序运行时间 : &quot; &lt;&lt; time1 &lt;&lt; endl;</div></pre></td></tr></table></figure>
-</li>
-<li><p>访问图中像素的方法<br>图像处理最基本的就是处理每个点的像素啦，所以呢，如何访问每个像素点呢。</p>
-</li>
-</ul>
-<ol>
-<li>指针访问： C操作符[]<br>如果是一幅 640 *320 的图像，就把他看成是一个二维数组 pic[640][320]。两个嵌套的for循环，即可完成图像像素点的遍历。</li>
-</ol>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/28/OpenCV/core组件进阶/" data-id="cj3cnxekb0027cn4utmk9daw4" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/05/29/CPP/友元、异常和其他问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          友元、异常和其他相关问题
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">OpenCV数据结构与基本绘图</div>
-    </a>
-  
-</nav>
-
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<post-OpenCV/core组件进阶" data-title="core组件进阶" data-url="http://newbird.cn/2017/03/28/OpenCV/core组件进阶/"></div>
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -169,7 +132,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-
+<% } %>
 </section>
         
           <aside id="sidebar">
