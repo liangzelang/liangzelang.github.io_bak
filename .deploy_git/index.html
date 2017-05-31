@@ -70,623 +70,634 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-CPP/友元、异常和其他问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/29/CPP/友元、异常和其他问题/" class="article-date">
-  <time datetime="2017-05-29T12:57:36.000Z" itemprop="datePublished">2017-05-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/CPP/友元、异常和其他问题/">友元、异常和其他相关问题</a>
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><h2 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h2><p>友元函数用于类的扩展接口，类并非只能拥有友元函数，还能够将类作为友元类。友元类的所有方法都可以访问原始类的私有成员和保护成员。<br>以电视机和遥控器的关系，解释友元的作用以及相关问题<br>
-        
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
           <p class="article-more-link">
-            <a href="/2017/05/29/CPP/友元、异常和其他问题/#more">Read More</a>
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
           </p>
-        
-      
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/05/29/CPP/友元、异常和其他问题/" data-id="cj3aal9sr000o094u8h5710u5" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
 
   
-    <article id="post-OpenCV/core组件进阶" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/28/OpenCV/core组件进阶/" class="article-date">
-  <time datetime="2017-03-28T14:54:25.000Z" itemprop="datePublished">2017-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/OpenCV/core组件进阶/">core组件进阶</a>
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>LUT函数： LOOK UP TABLE 操作<br>用于批量元素查找、扫描和操作图像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//首先我们建立一个mat型用于查表</div><div class="line">Mat lookUpTable(1, 256, CV_8U);</div><div class="line">uchar* p = lookUpTable.data;</div><div class="line">for( int i = 0; i &lt; 256; ++ i)</div><div class="line">&#123;</div><div class="line">	p[i] = table[i];</div><div class="line">&#125;</div><div class="line">//然后我们调用函数(I 是输入， J 是输出)：</div><div class="line">for(int i = 0; i &lt; times; ++ i)</div><div class="line">	LUT(I, lookUpTable, J);</div></pre></td></tr></table></figure>
-</li>
-<li><p>计时函数<br>‘getTickCount()’函数： 返回CPU自某个时间以来走过的时钟周期；<br>‘getTickFrequency()’函数： 返回CPU一秒钟的时钟周期；<br>故使用以上两个函数可以得到某段程度的运行时间：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">double time1 = static_cast&lt;double&gt;(getTickCount()); //记录起始时间</div><div class="line">// 你的程序...</div><div class="line">time1 = ((double)getTickCount() - time1) / getTickFrequency();</div><div class="line">cout &lt;&lt; &quot;程序运行时间 : &quot; &lt;&lt; time1 &lt;&lt; endl;</div></pre></td></tr></table></figure>
-</li>
-<li><p>访问图中像素的方法<br>图像处理最基本的就是处理每个点的像素啦，所以呢，如何访问每个像素点呢。</p>
-</li>
-</ul>
-<ol>
-<li>指针访问： C操作符[]<br>如果是一幅 640 *320 的图像，就把他看成是一个二维数组 pic[640][320]。两个嵌套的for循环，即可完成图像像素点的遍历。</li>
-</ol>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/28/OpenCV/core组件进阶/" data-id="cj3aal9uy001u094uphiygzgi" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-OpenCV/OpenCV数据结构与基本绘图" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/" class="article-date">
-  <time datetime="2017-03-28T14:54:20.000Z" itemprop="datePublished">2017-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/">OpenCV数据结构与基本绘图</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>IplImage与Mat<br>在最开始，OpenCV使用基于C语言接口构建，因此在较早版本的OpenCV中使用IplImage存储图像数据。这就造成了一定的问题，在调试了的时候，需要程序员手动release为IplImage分配的内存，不然可能造成内存泄漏。<br>在OpenCV2.0以来，就引入了C++接口，也就产生了基于C++的Mat数据结构，没错，它是可以自动内存管理的，因此我们现在用的最多的就是Mat数据结构了。Mat类很方便，不用手动分配内存、释放内存。<br>那么为什么IplImage还继续顽强存在呢，那就是因为大部分嵌入式系统只支持C语言.</p>
-</li>
-<li><p>Mat类 包含两个数据部分，一个部分是矩阵头（矩阵尺寸、存储方法、存储地址等），另一部分指向存储所有像素值得矩阵。</p>
-</li>
-</ol>
-<p>需要记住的是，大多时候复制Mat类，只是引用矩阵头，而不是复制整个像素矩阵，这将导致巨大的时间成本。因此，OpenCV采用引用计数机制，每个Mat对象都有独自的矩阵头，但是共享一个像素矩阵。常见的复制构造函数、赋值符号都是只复制矩阵头，而不是复制整个像素矩阵。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//以下三个Mat对象有不同的矩阵头，但是共享一个矩阵</div><div class="line">Mat A;   //创建矩阵头部分</div><div class="line">A = imread(const string &amp; filename, 1);  // 为矩阵开辟空间</div><div class="line">Mat B(A);  //采用复制构造函数</div><div class="line">Mat C = A;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>引用计数机制在上面的例子中有很好的说明，矩阵的引用次数为3，当Mat C的矩阵头被释放后，引用计数就减1，当引用次数为0时，矩阵空间就会被释放。</p>
-</li>
-<li><p>那么如果想复制整个矩阵，就需要使用clone()和copyTo()函数。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mat D = A.clone();</div><div class="line">Mat E;</div><div class="line">A.copyTo(E);</div></pre></td></tr></table></figure>
-<ul>
-<li>简要小结<br>++ OpenCV函数中C++接口，图像的内存都自动分配、释放；<br>++ 复制构造函数和赋值运算符只复制矩阵头；<br>++ clone(),copyTo()函数可以复制矩阵。</li>
-</ul>
-<ol>
-<li>Mat对象的创建和显式<br>Mat类型有多种创建方法，</li>
-</ol>
-<ul>
-<li>采用默认构造函数</li>
-<li>使用构造函数初始化</li>
-<li>为IplImage对象创建Mat信息头</li>
-<li>使用Create（）成员函数</li>
-<li>采用Matlab方式初始化</li>
-<li>采用逗号分隔符方式初始化</li>
-<li>为已存在的Mat对象创建新信息头<br>具体初始化代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">  //方法1：使用Mat（）构造函数</div><div class="line">Mat M(2, 2, CV_8UC3, Scalar(0,0,255));</div><div class="line">cout &lt;&lt; &quot;M = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; M &lt;&lt; endl;</div><div class="line"></div><div class="line">//way2 没有太懂，由于这是多维的数组，使用cout出错</div><div class="line">int sz[3] = &#123;2, 2, 2&#125;;</div><div class="line">Mat L(3, sz, CV_8UC3, Scalar::all(0));</div><div class="line"></div><div class="line">//way3 为IplImage创建信息头</div><div class="line">IplImage* img = cvLoadImage(&quot;D:\\C++程序联系文件夹（可选择性删除）\\OpenCV_Exercise\\learn.jpg&quot;,1);</div><div class="line">Mat mtx(img);</div><div class="line"></div><div class="line">//way4 使用Create()函数</div><div class="line">Mat K;</div><div class="line">K.create(4,4,CV_8UC(2));</div><div class="line">cout &lt;&lt; &quot;K = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; K &lt;&lt; endl &lt;&lt; endl;</div><div class="line">//way5 Matlab大法好</div><div class="line">Mat E = Mat::eye(4,4,CV_64F);</div><div class="line">cout &lt;&lt; &quot;E = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; E &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">Mat O = Mat::ones(2,2,CV_32F);</div><div class="line">cout &lt;&lt; &quot;O = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; O &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">Mat Z = Mat::zeros(3,3,CV_8UC1);</div><div class="line">cout &lt;&lt; &quot;Z = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; Z &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">//way6 </div><div class="line">Mat C = (Mat_&lt;double&gt;(3,3) &lt;&lt; 0, -1, 2, -1, 5, -1, 0, -1, 0);</div><div class="line">cout &lt;&lt; &quot;C = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; C &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">//way7 为已存在的对象创建新的信息头</div><div class="line">Mat RowClone = C.row(0).clone();</div><div class="line">cout &lt;&lt; &quot;RowClone = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; RowClone &lt;&lt; endl &lt;&lt; endl;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Mat类型的格式化输出方法，</p>
-<ul>
-<li>OpenCV默认方式</li>
-<li>Python输出风格</li>
-<li>逗号分隔风格（CSV）</li>
-<li>Numpy风格</li>
-<li>C语言风格<br>例程如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Mat r = Mat(3, 3, CV_8UC3);</div><div class="line">randu(r, Scalar::all(0), Scalar::all(255));</div><div class="line">//OpenCV格式化输出</div><div class="line">//way1 Opencv默认输出格式</div><div class="line">cout &lt;&lt; &quot;r 默认输出格式: &quot; &lt;&lt; endl &lt;&lt; r &lt;&lt; endl;</div><div class="line"></div><div class="line">//way2 python风格思密达</div><div class="line">cout &lt;&lt; &quot;r Python风格: &quot; &lt;&lt; endl &lt;&lt; format(r, &quot;python&quot;) &lt;&lt; endl;</div><div class="line"></div><div class="line">//way3 CSV风格</div><div class="line">cout &lt;&lt; &quot;r CSV风格: &quot;  &lt;&lt; endl &lt;&lt; format(r, &quot;csv&quot;) &lt;&lt; endl;</div><div class="line"></div><div class="line">//way4 Numpy风格</div><div class="line">cout &lt;&lt; &quot;r Numpy风格: &quot; &lt;&lt; endl &lt;&lt; format(r, &quot;numpy&quot;) &lt;&lt; endl;</div><div class="line"></div><div class="line">//way5 C style</div><div class="line">cout &lt;&lt; &quot;r C style: &quot; &lt;&lt; endl &lt;&lt; format(r, &quot;C&quot;) &lt;&lt; endl;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="http://oapeb119y.bkt.clouddn.com/image/opencv/Mat%E8%BE%93%E5%87%BA%E9%A3%8E%E6%A0%BC.png" alt="输出格式"></p>
-<ol>
-<li>OpenCV中常用基于图像的数据结构与函数介绍</li>
-</ol>
-<ul>
-<li>点的表示：Point 类<br>二维坐标系下的点<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Point2f p(6,2);</div><div class="line">cout &lt;&lt; &quot;[二维点] p = &quot; &lt;&lt; p &lt;&lt; endl;</div><div class="line"></div><div class="line">Point3f l(1,2,3);</div><div class="line">cout &lt;&lt; &quot;[三维点] l = &quot; &lt;&lt; l &lt;&lt; endl;</div><div class="line"></div><div class="line">vector&lt;float&gt; v;</div><div class="line">v.push_back(3);</div><div class="line">v.push_back(5);</div><div class="line">v.push_back(4);</div><div class="line">cout &lt;&lt; &quot;[基于Mat的Vector] v = &quot; &lt;&lt; Mat(v) &lt;&lt; endl;</div><div class="line"></div><div class="line">vector&lt;Point2f&gt; points(20);</div><div class="line">for(size_t i = 0; i &lt; points.size(); ++i)</div><div class="line">&#123;</div><div class="line">	points[i] = Point2f((float)(i*5),(float)(i%7));</div><div class="line">&#125;</div><div class="line">cout &lt;&lt; &quot;[二维点向量] points = &quot; &lt;&lt; points &lt;&lt; &quot;;&quot;;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Point2f、Point3f等等其实都是一个类模板Point_<typename t="">.具体定义core.hpp中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">template&lt;typename _Tp&gt; class Point_</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    typedef _Tp value_type;</div><div class="line"></div><div class="line">    // various constructors</div><div class="line">    Point_();</div><div class="line">    Point_(_Tp _x, _Tp _y);</div><div class="line">    Point_(const Point_&amp; pt);</div><div class="line">    Point_(const CvPoint&amp; pt);</div><div class="line">    Point_(const CvPoint2D32f&amp; pt);</div><div class="line">    Point_(const Size_&lt;_Tp&gt;&amp; sz);</div><div class="line">    Point_(const Vec&lt;_Tp, 2&gt;&amp; v);</div><div class="line"></div><div class="line">    Point_&amp; operator = (const Point_&amp; pt);</div><div class="line">    //! conversion to another data type</div><div class="line">    template&lt;typename _Tp2&gt; operator Point_&lt;_Tp2&gt;() const;</div><div class="line"></div><div class="line">    //! conversion to the old-style C structures</div><div class="line">    operator CvPoint() const;</div><div class="line">    operator CvPoint2D32f() const;</div><div class="line">    operator Vec&lt;_Tp, 2&gt;() const;</div><div class="line"></div><div class="line">    //! dot product</div><div class="line">    _Tp dot(const Point_&amp; pt) const;</div><div class="line">    //! dot product computed in double-precision arithmetics</div><div class="line">    double ddot(const Point_&amp; pt) const;</div><div class="line">    //! cross-product</div><div class="line">    double cross(const Point_&amp; pt) const;</div><div class="line">    //! checks whether the point is inside the specified rectangle</div><div class="line">    bool inside(const Rect_&lt;_Tp&gt;&amp; r) const;</div><div class="line"></div><div class="line">    _Tp x, y; //&lt; the point coordinates</div><div class="line">&#125;; </div><div class="line"></div><div class="line">typedef Point_&lt;int&gt; Point2i;</div><div class="line">typedef Point2i Point;</div><div class="line">typedef Point_&lt;float&gt; Point2f;</div></pre></td></tr></table></figure></typename></p>
-<p>从这个二维点的类模板可以看出Point_<float> Point2f 都等价。</float></p>
-<ul>
-<li><p>颜色的表示： Scalar 类<br>这个也是OpenCV中实现的类模板，其实可以简单的看成包含4个元素的Vector,不过一般我们都是用RGB表示颜色，因此只用到三个元素。<b>需要注意的是，OpenCV默认的图片通道存储顺序不是我们熟悉的RGB，而是BGR。&lt;\b&gt;下面为Scalar模板类的源码，位于core.hpp中。</b></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">template&lt;typename _Tp&gt; class Scalar_ : public Vec&lt;_Tp, 4&gt;</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    //! various constructors</div><div class="line">    Scalar_();</div><div class="line">    Scalar_(_Tp v0, _Tp v1, _Tp v2=0, _Tp v3=0);</div><div class="line">    Scalar_(const CvScalar&amp; s);</div><div class="line">    Scalar_(_Tp v0);</div><div class="line"></div><div class="line">    //! returns a scalar with all elements set to v0</div><div class="line">    static Scalar_&lt;_Tp&gt; all(_Tp v0);</div><div class="line">    //! conversion to the old-style CvScalar</div><div class="line">    operator CvScalar() const;</div><div class="line"></div><div class="line">    //! conversion to another data type</div><div class="line">    template&lt;typename T2&gt; operator Scalar_&lt;T2&gt;() const;</div><div class="line"></div><div class="line">    //! per-element product</div><div class="line">    Scalar_&lt;_Tp&gt; mul(const Scalar_&lt;_Tp&gt;&amp; t, double scale=1 ) const;</div><div class="line"></div><div class="line">    // returns (v0, -v1, -v2, -v3)</div><div class="line">    Scalar_&lt;_Tp&gt; conj() const;</div><div class="line"></div><div class="line">    // returns true iff v1 == v2 == v3 == 0</div><div class="line">    bool isReal() const;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">typedef Scalar_&lt;double&gt; Scalar;</div></pre></td></tr></table></figure>
-</li>
-<li><p>尺寸的表示： Size 类<br>与以上的基本都一样，也是一个类模板，此处不详细描述。常用：’ Size(5, 6) // width 5, height 6 ‘.</p>
-</li>
-<li>矩阵的表示： Rect 类<br>同上。</li>
-<li>颜色的空间转换： cvtColor() 函数<br><code>void cvtColor(InputArray src, OutputArray dst, int code, int dstCn = 0);</code><br>InputArray src：输入图像<br>OutputArray dst: 输出图像<br>int code: 颜色空间转换标识符，是一堆枚举值，具体见<code>.../imgproc/types_c.h</code><br>int dstCn: 目标图像的通道数，默认值为0，取原图像的通道数</li>
-</ul>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/28/OpenCV/OpenCV数据结构与基本绘图/" data-id="cj3aal9u7001k094u5q7rkzse" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CPP/虚析构函数的作用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/CPP/虚析构函数的作用/" class="article-date">
-  <time datetime="2017-03-11T23:09:46.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/CPP/虚析构函数的作用/">虚析构函数的作用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>为什么要使用虚析构函数？<br>如果有这样两个类：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	person(...);</div><div class="line">	virtual ~person();</div><div class="line">	virtual void show();  //具体定义就不写了，反正和派生类不一样</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	virtual void show();  </div><div class="line">&#125;;</div><div class="line">person temp_p(...);</div><div class="line">student temp_s(...);</div><div class="line">person * temp1 = temp_p;</div><div class="line">person * temp2 = temp_s;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>为了发挥C++多态的特性，我们一般会使用虚函数，采用基类指针或者引用来 对基类对象或者派生类对象进行操作。但是这样会有一个问题，如果析构函数不是虚函数，那么基类指针temp2结束代码段时，就只会调用指针类型(就是基类)的析构函数。如果这个基类指针指向的是派生类对象，那么派生类的析构函数就不会被调用，显然是有一定问题隐患的。<br>因此，使用虚析构函数可以确保正确的析构函数序列被调用。</p>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/虚析构函数的作用/" data-id="cj3aal9sa000i094ux5th9exl" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CPP/虚函数的工作原理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/CPP/虚函数的工作原理/" class="article-date">
-  <time datetime="2017-03-11T23:09:16.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/CPP/虚函数的工作原理/">虚函数的工作原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>为什么需要虚函数？<br>在编写程序的过程中，一定会遇到这样的场景。派生类继承了基类的方法,但是我们希望同一个方法在派生类和基类中的行为不同，就是方法取决于调用的对象（这种复杂的行为就是多态）。实现多态的公有继承有两种重要的机制。</li>
-</ul>
-<ol>
-<li>在派生类中重新定义基类方法 （可以定义不同方法）</li>
-<li>虚函数 （可以使基类引用或指针可以调用派生类新定义的方法）</li>
-</ol>
-<ul>
-<li><p>虚函数基本语法？<br>在需要重新定义的方法前添加关键字 virtual，然后分别定义即可。</p>
-</li>
-<li><p>编译器如何确定作者想使用哪种方法？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	virtual void show();  //具体定义就不写了，反正和派生类不一样</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	virtual void show();  </div><div class="line">&#125;;</div><div class="line">person temp_person(……);  //构造函数，实例化一个对象</div><div class="line">student temp_student(……);</div><div class="line">temp_person.show();    //person::show()</div><div class="line">temp_student.show();   //student::show()</div><div class="line">person &amp; temp_s = temp_student; </div><div class="line">person &amp; temp_p = temp_person;</div><div class="line">temp_s.show();         //person::show()</div><div class="line">temp_p.show();         //student::show()</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如上述代码所示，基类和派生类有不一样的方法，那么我在使用的时候，我怎么判断调用的是哪个方法。<br>如果使用virtual,根据引用或指针指向的对象类型来选择方法。<br>如果不是使用virtual，根据引用或指针的类型来选择方法。（这个没有太懂，来自C++ primer plus p493，如果重名了，参数列表还相同……感觉死机了额）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">	void show();  </div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">	void show();  //这里涉及隐藏规则，具体在 effective C++ third edition p156</div><div class="line">&#125;;</div><div class="line">person temp_person(……);  //构造函数，实例化一个对象</div><div class="line">student temp_student(……);</div><div class="line">temp_person.show();    //person::show()</div><div class="line">temp_student.show();   //student::show()</div><div class="line">person &amp; temp_s = temp_student; </div><div class="line">person &amp; temp_p = temp_person;</div><div class="line">temp_s.show();         //person::show()  </div><div class="line">temp_p.show();         //person::show()  这里不确定呀</div></pre></td></tr></table></figure></p>
-<ul>
-<li>实现原理<br>如果使用了虚函数，编译器将给<b>每个对象</b>添加一个隐藏成员，这个隐藏成员保存了一个指向函数地址数组的指针。而这个被指向的函数地址数组，我们叫做虚函数表(virtual function table, vtbl)。<br>虚函数表存储了为类对象进行申明的虚函数地址。例如基类对象包含一个指针，该指针指向一个装有虚函数地址的数组，这个数组中把每个基类虚函数的地址都存储起来；一个派生类对象也包含一个指针，同样指向装有虚函数地址的数组，这个数组不仅包含了基类的虚函数地址，也包含了派生类的虚函数地址。同时如果派生类对象中虚函数重新定义了，那么派生类的虚函数表中该虚函数的地址被更新；如果派生类中没有对基类虚函数重新定义，那么虚函数表中将存储虚函数原始版本的地址（就是基类版本）；如果派生类对象新定义了虚函数，该虚函数地址将被添加到虚函数表中。<br>如果还不明白，如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class Scientist&#123;</div><div class="line">	...</div><div class="line">	char name[40];</div><div class="line">public:</div><div class="line">	virtual void show_name();</div><div class="line">	virtual void show_all();</div><div class="line">	...</div><div class="line">&#125;;</div><div class="line">class Physicist : public Scientist&#123;</div><div class="line">	</div><div class="line">	...</div><div class="line">	char field[40];</div><div class="line">public:</div><div class="line">	void show_all();           //重定义了基类方法，vtbl将改变原本指向的地址</div><div class="line">	virtual void show_field(); //new function</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="http://oapeb119y.bkt.clouddn.com/image/CPP/virtual_function%E8%99%9A%E5%87%BD%E6%95%B0%E6%9C%BA%E5%88%B6.png" alt="虚函数工作机制"></p>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/虚函数的工作原理/" data-id="cj3aal9sw000r094uhap299s2" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CPP/模板的具体化和实例化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/CPP/模板的具体化和实例化/" class="article-date">
-  <time datetime="2017-03-11T23:08:12.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/CPP/模板的具体化和实例化/">模板的具体化和实例化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>什么是模板的具体化和实例化呢？有以下模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">template &lt;typename T&gt;</div><div class="line">void Swap(T &amp;a, T &amp;b);</div><div class="line"></div><div class="line">template &lt;typename T&gt; void Swap(T &amp;a, T  &amp;b)</div><div class="line">&#123;</div><div class="line">	T temp;</div><div class="line">	temp = a;</div><div class="line">	a = b;</div><div class="line">	b = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	using namespace std;</div><div class="line">	int i = 10;</div><div class="line">	int j = 20;</div><div class="line">	Swap(i, j);   // 标志1</div><div class="line">	...</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在上面的模板函数声明中，声明一个交换类型为T的两个元素。代码包含函数模板并不会生产函数定义，它只是一个用于生产函数定义的方案。当编译器使用模板为特定类型生产函数定义时（程序标志1处），得到的是<b>模板实例化</b>，值得注意的是这里实例化的方式为隐式实例化，因为编译器发现你用的int类型参数，所以就隐式实例化。<br>在C++中，还有一种实例化方式：<b>显式实例化</b>，语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template void Swap&lt;int&gt;(int, int);  //显式实例化</div></pre></td></tr></table></figure></p>
-<p>与实例化不太一样的是<b>显式具体化</b>,具体的声明语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;&gt; void Swap(int &amp;, int &amp;);</div><div class="line">template &lt;&gt; void Swap&lt;int&gt;(int &amp;, int &amp;);</div></pre></td></tr></table></figure></p>
-<p>显示具体化不同的是：需要专门为int类型显式地定义函数定义，显式具体化声明在关键字template后包含&lt;&gt;,而显式实例化没有。</p>
-<p>此时，我们会发现有很多不同的函数定义，那么我们使用某个函数的时候，编译器到底使用的哪个函数原型呢？ 编译器选择原型的时候，非模板函数版本 &gt; 显式具体化 &gt; 通用模板版本。</p>
-<p>另外一点，同一个类型的显示实例化和显式具体化不能同时使用，会出错。</p>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/模板的具体化和实例化/" data-id="cj3aal9rn0009094uhfbokcx3" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CPP/CPP中如何输出char型指针地址" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/CPP/CPP中如何输出char型指针地址/" class="article-date">
-  <time datetime="2017-03-11T23:07:40.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/CPP/CPP中如何输出char型指针地址/">C++中如何输出char型指针地址</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>C++ 中std::cout对于char类型的指针，将默认输出这个类型指向的字符串，也就是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">char * temp = &quot;Hello, CPP.\n&quot;;</div><div class="line">std::cout &lt;&lt; temp &lt;&lt; endl;</div><div class="line"></div><div class="line">OUTPUT:  Hello, CPP</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>那么我们要想输出这个字符串的地址怎么办？？？</p>
-<ul>
-<li>首先，我们要清楚为什么会这样呢，因为如果是int类型的指针就不会呀。这是因为C++标准库中IO类对’&lt;&lt;’运算符进行了重载，因此呢， 在遇到 char * 类型数据的时候，就自动使用相应的重载函数，把那个char型指针指向的字符串输出了。</li>
-<li><p>那么，How 2 solve this problem? 类型转换呀，你把它转换为int型指针？ 这是可以的， 但是这时下策。使用’static_cast<const void="" *="">‘,把char型指针转换为无类型指针。如下：</const></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">char * temp = &quot;Hello, CPP.\n&quot;;</div><div class="line">std::cout &lt;&lt; temp &lt;&lt; endl;</div><div class="line">std::cout &lt;&lt; static_cast&lt;const void *&gt;(temp) &lt;&lt; endl;</div><div class="line">OUTPUT:  </div><div class="line">Hello, CPP</div><div class="line">某个地址</div></pre></td></tr></table></figure>
-</li>
-<li><p>一些学渣还会有疑问，static_cast&lt;&gt;()这是什么鬼？那么拾起那么《C++ primer》，你会发现C++还是很有趣的。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/CPP中如何输出char型指针地址/" data-id="cj3aal9sn000l094ur1qvzisy" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CPP/派生类与基类之间的特殊关系" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/CPP/派生类与基类之间的特殊关系/" class="article-date">
-  <time datetime="2017-03-11T22:51:52.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/CPP/派生类与基类之间的特殊关系/">派生类与基类之间的特殊关系</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>继承是C++中一项非常重要的特性，继承派生使得C++的代码重用实现可能。基类与其派生类之间也有着较为特殊的关系<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class person&#123;</div><div class="line">private:</div><div class="line">	string name;</div><div class="line">	double height;</div><div class="line">public:</div><div class="line">	void Funciton_One();</div><div class="line">&#125;;</div><div class="line">class student : public person&#123;</div><div class="line">private:</div><div class="line">	int student_ID;</div><div class="line">public:</div><div class="line">	void Funciton_TWo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>由上述简要代码可以知道，student类从person类派生出来，继承了person类的实现（存储了基类数据成员）与接口（可以使用基类方法）。<br><b>重点</b><br>基类指针可以在不进行显式转换的情况下，指向派生类对象；同理，<br>基类引用也可以在不进行显式转换的情况下引用派生类对象。<br>但是，反过来确实不允许的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">person Zhang(……);</div><div class="line">student Lee(……)；</div><div class="line">person * Temp1 = &amp;Lee; // Allowed</div><div class="line">person &amp; Temp2 = Lee;  // Allowed</div><div class="line">student * temp1 = &amp;Zhang; // Not Allowed</div><div class="line">student &amp; temp2 = Zhang;  // Not Allowed</div></pre></td></tr></table></figure></p>
-<p>从上面代码可以看出这一特殊的关系。虽然基类引用和指针可以引用和指向派生类对象，但是基类引用和指针只能调用基类方法。这也正常，你试想，使用基类引用为派生类对象调用基类方法，显然是可以的，因为派生类继承了基类方法；相反，如果使用派生类引用为基类对象调用派生类方法，这明显会发生错误。<br>这一关系也存在于以基类引用（指针）作为形参的函数。</p>
-
-      
-    </div>
-
-    <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/12/CPP/派生类与基类之间的特殊关系/" data-id="cj3aal9rz000f094ujh7elgph" class="article-share-link">Share</a>
-    <!--  
-	
-   -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
- 
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-OpenCV/HigtGUI的初识" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/01/OpenCV/HigtGUI的初识/" class="article-date">
-  <time datetime="2017-02-28T22:48:02.000Z" itemprop="datePublished">2017-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/01/OpenCV/HigtGUI的初识/">HigtGUI的初识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><b>imread()函数</b><br> Mat imread(const string &amp; filename, int flags = 1);<br>其中第一个参数表示要读取的图像文件名， const string &amp;类型的filename。值得注意的是图像的路径。支持多种类型的图像载入，主流的有bmp\jpg\jpeg\png\ppm\pgm\ras\tif等类型。<br>第二个参数表示载入标识，就是需要以何种方式把原图像呈现，默认参数为1。可以在OpenCV的图像标识枚举中选取：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">enum</div><div class="line">&#123;</div><div class="line">/* 8bit, color or not */</div><div class="line">//新的版本中已经取消，忽略，原通道读取</div><div class="line">    CV_LOAD_IMAGE_UNCHANGED  =-1, </div><div class="line">/* 8bit, gray */</div><div class="line">//原图像转换为灰度图像输出</div><div class="line">    CV_LOAD_IMAGE_GRAYSCALE  =0,</div><div class="line">/* ?, color */</div><div class="line">//原图像转换为彩色图像输出，如果原图像是灰度图像，输出还是灰度</div><div class="line">    CV_LOAD_IMAGE_COLOR      =1,</div><div class="line">/* any depth, ? */</div><div class="line">//如果图像深度为16或者32位，则输出相应深度的图像，否则转换为8位深度图像</div><div class="line">    CV_LOAD_IMAGE_ANYDEPTH   =2,</div><div class="line">/* ?, any color */</div><div class="line">//原图像色彩保持不变</div><div class="line">    CV_LOAD_IMAGE_ANYCOLOR   =4</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>但是OpenCV3中这些宏都失效，故采用数字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Mat img = imread(&quot;pic.jpg&quot;,2|4)  //载入无损的源图像</div></pre></td></tr></table></figure></p>
-        
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
           <p class="article-more-link">
-            <a href="/2017/03/01/OpenCV/HigtGUI的初识/#more">Read More</a>
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
           </p>
-        
-      
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2017/03/01/OpenCV/HigtGUI的初识/" data-id="cj3aal9u3001h094umcvbxlq8" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
 
   
-    <article id="post-CPP/c-成员运算符" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/29/CPP/c-成员运算符/" class="article-date">
-  <time datetime="2016-12-29T15:49:13.000Z" itemprop="datePublished">2016-12-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/CPP/c-成员运算符/">c++成员运算符</a>
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <p>总结一下成员运算符的简单知识。</p>
-<ul>
-<li><p>成员运算符有直接成员运算符 <code>.</code> 和间接成员运算符 <code>-&gt;</code> </p>
-</li>
-<li><p>直接成员运算符 ‘.’<br>直接成员运算符主要是在直接引用，类本身以及内部引用时使用。人话就是对象使用</p>
-</li>
-<li><p>间接成员运算符 ‘-&gt;’<br>间接成员运算符主要是在间接引用时使用。人话就是指向对象的指针使用</p>
-</li>
-<li><p>有时，C++新手在指定结构成员时，搞不清楚何时应使用句点运算符，何时应使用箭头运算符。规则很简单，如果结构标识符是结构名称，则使用句点运算符（直接成员运算符）；如果标识符是指向结构的指针，则使用箭头运算符。</p>
-</li>
-</ul>
-<p><b>Example:</b></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//利用结构，演示直接成员运算符和间接成员运算符的用法</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> inflatable</div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> name[<span class="number">20</span>];</div><div class="line">	<span class="keyword">float</span> volume;</div><div class="line">	<span class="keyword">double</span> price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">	inflatable *ps = <span class="keyword">new</span> inflatable;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter name of inflable item: "</span>;</div><div class="line">	<span class="built_in">cin</span>.get(ps-&gt;name,<span class="number">20</span>);</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter volume in cubic feet : "</span>;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; (*ps).volume;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter price : $"</span>;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; ps-&gt;price;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Name: "</span> &lt;&lt; (*ps).name &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"volume : "</span>&lt;&lt; ps-&gt;volume &lt;&lt;<span class="string">"cubic feet\n"</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Price: $"</span> &lt;&lt; ps-&gt;price &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">	<span class="keyword">delete</span> ps;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/29/CPP/c-成员运算符/" data-id="cj3aal9rw000c094uowcblaib" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
 
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
+
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
+
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
+
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
+
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
+
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
+
+  
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+
+    <footer class="article-footer">
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
+   -->
+      <%- partial('post/tag') %>
+    </footer>
+ 
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"newbird"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+<% } %>
 
   
 

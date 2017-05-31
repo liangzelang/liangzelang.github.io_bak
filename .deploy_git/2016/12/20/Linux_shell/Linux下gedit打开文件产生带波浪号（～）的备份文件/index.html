@@ -19,7 +19,7 @@
 
 -f –force 忽略不存在文件，强制删除并不提示
 -r –">
-<meta property="og:updated_time" content="2017-05-29T15:22:55.885Z">
+<meta property="og:updated_time" content="2017-05-31T07:15:36.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下gedit打开文件产生带波浪号（～）的备份文件">
 <meta name="twitter:description" content="在ubuntu系统下，使用gedit编辑器打开文件（如test.md），会自动生成一个备份文件，文件名字为（原文件名＋波浪号 test.md~）,这种情况是为了防止系统或者编辑器突然崩溃，以恢复文件使用。但是有时候看着特别繁琐和凌乱。所以一下为解决办法，相反也可以开启自动备份功能。
@@ -81,86 +81,51 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" class="article-date">
-  <time datetime="2016-12-20T00:00:17.000Z" itemprop="datePublished">2016-12-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Linux下gedit打开文件产生带波浪号（～）的备份文件
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <p>  在ubuntu系统下，使用gedit编辑器打开文件（如test.md），会自动生成一个备份文件，文件名字为（原文件名＋波浪号 test.md~）,这种情况是为了防止系统或者编辑器突然崩溃，以恢复文件使用。但是有时候看着特别繁琐和凌乱。所以一下为解决办法，相反也可以开启自动备份功能。</p>
-<h1 id="如何快速删除此类备份文件"><a href="#如何快速删除此类备份文件" class="headerlink" title="如何快速删除此类备份文件"></a>如何快速删除此类备份文件</h1><pre><code>rm -rf *.*~
-</code></pre><ul>
-<li>-f –force 忽略不存在文件，强制删除并不提示</li>
-<li>-r –recursive 删除该目录及其子目录下所有符合条件的文件</li>
-<li><em>.</em>~ *代表任意，任意文件名+’.’+任意文件类型后缀+’~’,满足该条件的文件都删除</li>
-</ul>
-<h1 id="如何设置取消生成自动备份文件"><a href="#如何设置取消生成自动备份文件" class="headerlink" title="如何设置取消生成自动备份文件"></a>如何设置取消生成自动备份文件</h1><ul>
-<li>gedit编辑器：　最大化窗口-&gt;Edit-&gt;Preferences-&gt;Editor-&gt;file saving-&gt;取消’Creat a backup copy of files before saving’选项，中文系统同理。</li>
-<li>Vi/Vim编辑器:<br>  vi ~/.vimrc<br>  set nobackup<br>通过以上方法可以实现删除或者取消自动备份文件功能，相反可以开启自动备份功能。</li>
-</ul>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" data-id="cj3aal9uc001n094uvxodhpht" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/12/23/Leetcode/202-happy-number-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          202.happy number
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">VS2010+OpenCV2.4.10的安装与配置</div>
-    </a>
-  
-</nav>
-
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<post-Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件" data-title="Linux下gedit打开文件产生带波浪号（～）的备份文件" data-url="http://newbird.cn/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/"></div>
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -176,7 +141,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-
+<% } %>
 </section>
         
           <aside id="sidebar">

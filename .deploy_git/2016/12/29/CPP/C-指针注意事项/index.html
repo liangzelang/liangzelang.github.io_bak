@@ -17,7 +17,7 @@
 
 使用delete的关键在于，将他用于new分配的内存。这并不意味这要使用用于new的指针，而是用于new分配的地址。Example:
 123int *ps = new int;    //allocate memoryint *pq = ps;         //set second p">
-<meta property="og:updated_time" content="2017-05-29T15:22:55.885Z">
+<meta property="og:updated_time" content="2017-05-31T07:15:36.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++指针注意事项">
 <meta name="twitter:description" content="一定要在对指针使用解除运算符（*）之前，将指针初始化为一个确定的适当的地址，这是关于使用指针的金科玉律。
@@ -78,93 +78,51 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-CPP/C-指针注意事项" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/29/CPP/C-指针注意事项/" class="article-date">
-  <time datetime="2016-12-29T15:34:47.000Z" itemprop="datePublished">2016-12-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      C++指针注意事项
-    </h1>
-  
-
+        <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>一定要在对指针使用解除运算符（*）之前，将指针初始化为一个确定的适当的地址，这是关于使用指针的金科玉律。</p>
-</li>
-<li><p>使用delete的关键在于，将他用于new分配的内存。这并不意味这要使用用于new的指针，而是用于new分配的地址。<br><b>Example:</b></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> *ps = <span class="keyword">new</span> <span class="keyword">int</span>;    <span class="comment">//allocate memory</span></div><div class="line"><span class="keyword">int</span> *pq = ps;         <span class="comment">//set second pointer to same block</span></div><div class="line"><span class="keyword">delete</span> pq;			  <span class="comment">//delete with second pointer</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>以上方法为同一使用new分配的空间，创建了两个指针，通常不会这么做，这将增加删除同一内存块两次的可能性。遵守</p>
-<ul>
-<li>使用new和delete时，需要以下规则。</li>
-</ul>
-<ol>
-<li>不要使用delete来释放不是new分配的内存；</li>
-<li>不要使用delete释放同一个内存块两次；</li>
-<li>如果使用new []为数组分配内存，则应使用delete []来释放</li>
-<li>如果使用new []为一个实体分配内存，则应使用delete来释放</li>
-<li>对空指针使用delete是安全的</li>
-</ol>
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
     </div>
 
     <footer class="article-footer">
-     <a data-url="http://newbird.cn/2016/12/29/CPP/C-指针注意事项/" data-id="cj3aal9rk0007094uut3owuto" class="article-share-link">Share</a>
-    <!--  
-	
+   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+    
+	<% if (post.comments && config.disqus_shortname){ %>
+	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+      <% } %>
    -->
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
+      <%- partial('post/tag') %>
     </footer>
  
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sizeof和strlen的区别
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/12/28/Leetcode/414-the-third-maxium-number/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">414. the third maxium number</div>
-    </a>
-  
-</nav>
-
-  
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
 </article>
 
-
+<% if (!index && post.comments && config.duoshuo_shortname){ %>
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<post-CPP/C-指针注意事项" data-title="C++指针注意事项" data-url="http://newbird.cn/2016/12/29/CPP/C-指针注意事项/"></div>
+  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -180,7 +138,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-
+<% } %>
 </section>
         
           <aside id="sidebar">
