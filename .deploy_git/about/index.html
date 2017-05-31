@@ -89,51 +89,63 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/about/index.html" class="article-date">
+  <time datetime="2016-07-27T12:35:34.000Z" itemprop="datePublished">2016-07-27</time>
+</a>
+    
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于我（About）
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <hr>
+<h2 id="Zelang-Liang-梁泽浪"><a href="#Zelang-Liang-梁泽浪" class="headerlink" title="Zelang Liang(梁泽浪)"></a>Zelang Liang(梁泽浪)</h2><hr>
+<p><img src="http://oapeb119y.bkt.clouddn.com/IMG_20160921_193937.jpg" alt="Zelang Liang" height="300" width="400"></p>
+<hr>
+<h2 id="个人介绍"><a href="#个人介绍" class="headerlink" title="个人介绍"></a>个人介绍</h2><p>个人喜欢机器视觉、图像处理、机器学习等知识领域</p>
+<p>目前在实验室研究的方向和自己的兴趣相差很大，所以自己只有自学了，不能实验室项目增长个人技能，反倒是有点浪费时间。</p>
+<p>现在在积极充实自己的技能包：<br>  C | C++ | Python | Shell | Linux | Matlab | Markdown | OpenCV</p>
+<h2 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h2><p>2016.09-         北京理工大学（模式识别与智能系统）<br>2011.09-2015.07  吉林大学（自动化） </p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>在有限的硕士研究生生涯中，把握好每一天，扩宽胸怀、提高眼界、增长胆识和充实技能</p>
+<p>能有一天进入心仪的公司，用技术在历史的长河中留下属于自己的印记</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
+<li><a href="https://github.com/liangzelang" target="_blank" rel="external">Github</a></li>
+</ul>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/about/index.html" data-id="cj3cnxeda0005cn4ua80hb4as" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<page-undefined" data-title="关于我（About）" data-url="http://newbird.cn/about/index.html"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -149,7 +161,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

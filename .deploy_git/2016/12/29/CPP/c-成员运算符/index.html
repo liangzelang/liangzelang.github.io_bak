@@ -93,51 +93,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-CPP/c-成员运算符" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/29/CPP/c-成员运算符/" class="article-date">
+  <time datetime="2016-12-29T15:49:13.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      c++成员运算符
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <p>总结一下成员运算符的简单知识。</p>
+<ul>
+<li><p>成员运算符有直接成员运算符 <code>.</code> 和间接成员运算符 <code>-&gt;</code> </p>
+</li>
+<li><p>直接成员运算符 ‘.’<br>直接成员运算符主要是在直接引用，类本身以及内部引用时使用。人话就是对象使用</p>
+</li>
+<li><p>间接成员运算符 ‘-&gt;’<br>间接成员运算符主要是在间接引用时使用。人话就是指向对象的指针使用</p>
+</li>
+<li><p>有时，C++新手在指定结构成员时，搞不清楚何时应使用句点运算符，何时应使用箭头运算符。规则很简单，如果结构标识符是结构名称，则使用句点运算符（直接成员运算符）；如果标识符是指向结构的指针，则使用箭头运算符。</p>
+</li>
+</ul>
+<p><b>Example:</b></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//利用结构，演示直接成员运算符和间接成员运算符的用法</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> inflatable</div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> name[<span class="number">20</span>];</div><div class="line">	<span class="keyword">float</span> volume;</div><div class="line">	<span class="keyword">double</span> price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">	inflatable *ps = <span class="keyword">new</span> inflatable;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter name of inflable item: "</span>;</div><div class="line">	<span class="built_in">cin</span>.get(ps-&gt;name,<span class="number">20</span>);</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter volume in cubic feet : "</span>;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; (*ps).volume;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter price : $"</span>;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; ps-&gt;price;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Name: "</span> &lt;&lt; (*ps).name &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"volume : "</span>&lt;&lt; ps-&gt;volume &lt;&lt;<span class="string">"cubic feet\n"</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Price: $"</span> &lt;&lt; ps-&gt;price &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">	<span class="keyword">delete</span> ps;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/29/CPP/c-成员运算符/" data-id="cj3cnxef30007cn4uomkotqr9" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/01/OpenCV/HigtGUI的初识/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HigtGUI的初识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sizeof和strlen的区别</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-CPP/c-成员运算符" data-title="c++成员运算符" data-url="http://newbird.cn/2016/12/29/CPP/c-成员运算符/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -153,7 +190,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

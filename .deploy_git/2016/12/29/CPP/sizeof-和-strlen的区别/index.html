@@ -87,51 +87,106 @@ sizeof可以用类型做参数，st">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-CPP/sizeof-和-strlen的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/" class="article-date">
+  <time datetime="2016-12-29T15:39:01.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sizeof和strlen的区别
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <p>在一些场景下,希望得到数组的大小，字符串的长度，char型数组的长度等等，很自然想到sizeof以及strlen,但是非常容易搞混弄错.下面简要列出一些区别：</p>
+<ol>
+<li><p>sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。<br>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+</li>
+<li><p>sizeof是操作符，strlen是函数。 </p>
+</li>
+<li><p>sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">short f();</div><div class="line">printf(&quot;%d\n&quot;, sizeof(f()));</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出的结果是 <code>sizeof(short)</code> ，即2。 </p>
+<a id="more"></a>
+<ol>
+<li><p>数组做sizeof的参数不退化，传递给strlen就退化为指针了。 </p>
+</li>
+<li><p>大部分编译程序 在编译的时候就把sizeof计算过了 是类型或是变量的长度这就是sizeof(x)可以用来定义数组维数的原因 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">char str[20]=&quot;0123456789&quot;;</div><div class="line">int a=strlen(str); //a=10;</div><div class="line">int b=sizeof(str); //而b=20;</div></pre></td></tr></table></figure>
+</li>
+<li><p>strlen的结果要在运行的时候才能计算出来，时用来计算字符串的长度，不是类型占内存的大小。 </p>
+</li>
+<li><p>sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数。</p>
+</li>
+<li><p>当适用了于一个结构类型时或变量， sizeof 返回实际的大小，<br>当适用一静态地空间数组， sizeof 归还全部数组的尺寸。<br>sizeof 操作符不能返回动态地被分派了的数组或外部的数组的尺寸 </p>
+</li>
+<li><p>数组作为参数传给函数时传的是指针而不是数组，传递的是数组的首地址，<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fun(char [8])</div><div class="line">fun(char [])</div><div class="line">都等价于 fun(char *)</div><div class="line">``` </div><div class="line">在C++里参数传递数组永远都是传递指向数组首元素的指针，编译器不知道数组的大小</div><div class="line">如果想在函数内知道数组的大小， 需要这样做：</div><div class="line">进入函数后用memcpy拷贝出来，长度由另一个形参传进去</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>fun(unsiged char <em>p1, int len)<br>{<br>  unsigned char</em> buf = new unsigned char[len+1]<br>  memcpy(buf, p1, len);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">我们能常在用到 sizeof 和 strlen 的时候，通常是计算字符串数组的长度</div><div class="line">看了上面的详细解释，发现两者的使用还是有区别的，从这个例子可以看得很清楚：</div></pre></td></tr></table></figure></p>
+<p>char str[20]=”0123456789”;<br>int a=strlen(str); //a=10; &gt;&gt;&gt;&gt; strlen 计算字符串的长度，以结束符 0x00 为字符串结束。<br>int b=sizeof(str); //而b=20; &gt;&gt;&gt;&gt; sizeof 计算的则是分配的数组 str[20] 所占的内存空间的大小，不受里面存储的内容改变。<br><code>``
+上面是对静态数组处理的结果，如果是对指针，结果就不一样了</code>char<em> ss = “0123456789”;<code>`sizeof(ss)</code> 结果 4 ＝＝＝》ss是指向字符串常量的字符指针，sizeof 获得的是一个指针的之所占的空间,应该是长整型的，所以是4<br>`sizeof(</em>ss)<code>结果 1 ＝＝＝》*ss是第一个字符 其实就是获得了字符串的第一位&#39;0&#39; 所占的内存空间，是char类型的，占了 1 位</code>strlen(ss)= 10` &gt;&gt;&gt;&gt; 如果要获得这个字符串的长度，则一定要使用 strlen</p>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/29/CPP/sizeof-和-strlen的区别/" data-id="cj3cnxef70009cn4ucqogrjif" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/29/CPP/c-成员运算符/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          c++成员运算符
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/29/CPP/C-指针注意事项/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++指针注意事项</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-CPP/sizeof-和-strlen的区别" data-title="sizeof和strlen的区别" data-url="http://newbird.cn/2016/12/29/CPP/sizeof-和-strlen的区别/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -147,7 +202,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

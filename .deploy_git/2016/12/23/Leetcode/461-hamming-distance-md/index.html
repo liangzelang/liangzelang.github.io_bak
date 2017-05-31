@@ -84,51 +84,89 @@ Note:0 ≤ x, y &amp;lt; 2">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Leetcode/461-hamming-distance-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/461-hamming-distance-md/" class="article-date">
+  <time datetime="2016-12-23T02:11:23.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      461.hamming distance
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <ul>
+<li><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
+</li>
+<li><p>Given two integers x and y, calculate the Hamming distance.</p>
+</li>
+</ul>
+<p><b>Note</b>:<br>0 ≤ x, y &lt; 2^31.</p>
+<p><b>Example</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line"></div><div class="line">The above arrows point to positions where the corresponding bits are different.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>：Hanmming Distance 就是两个整数[0 2^31]二进制表示对应位上不同位数的个数。给定X,Y求取两者的hamming distance<a id="more"></a></li>
+<li><b>思路</b> 用数组表示整数二进制，使用循环比较</li>
+</ul>
+<h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> a[])</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> i=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(n) &#123;</div><div class="line">        a[i]=n%<span class="number">2</span>;   <span class="comment">//得到低位余数</span></div><div class="line">        n=n/<span class="number">2</span>;      <span class="comment">//得到商</span></div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> x_dis[<span class="number">32</span>]=&#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">char</span> y_dis[<span class="number">32</span>]=&#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> temp=<span class="number">0</span>;</div><div class="line">    dis(x,x_dis);</div><div class="line">    dis(y,y_dis);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">32</span>;i++) &#123;</div><div class="line">            <span class="keyword">if</span>(x_dis[i]!=y_dis[i]) temp++;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><p>我最开始的思路就是不用指定二进制表示的位数，使用strlen（）来获得数组大小，但是失败，以下为错误代码，希望有人不吝赐教。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> a[])</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> i=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(n) &#123;</div><div class="line">        a[i]=n%<span class="number">2</span>;   <span class="comment">//得到低位余数</span></div><div class="line">        n=n/<span class="number">2</span>;      <span class="comment">//得到商</span></div><div class="line">        i++;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>)</div><div class="line">            a[i]=<span class="string">'\0'</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> x_dis[]=&#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">char</span> y_dis[]=&#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> temp=<span class="number">0</span>;</div><div class="line">    dis(x,x_dis);</div><div class="line">    dis(y,y_dis);</div><div class="line">    <span class="keyword">if</span>((<span class="built_in">strlen</span>(x_dis))&gt;=(<span class="built_in">strlen</span>(y_dis))) &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">strlen</span>(y_dis);i++) &#123;</div><div class="line">            <span class="keyword">if</span>(x_dis[i]!=y_dis[i]) temp++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="built_in">strlen</span>(y_dis);i&lt;<span class="built_in">strlen</span>(x_dis);i++) &#123;</div><div class="line">            <span class="keyword">if</span>(x_dis[i]!=<span class="number">0</span>) temp++;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">strlen</span>(x_dis);i++) &#123;</div><div class="line">            <span class="keyword">if</span>(y_dis[i]!=y_dis[i]) temp++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="built_in">strlen</span>(x_dis);i&lt;<span class="built_in">strlen</span>(y_dis);i++) &#123;</div><div class="line">            <span class="keyword">if</span>(y_dis[i]!=<span class="number">0</span>) temp++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/461-hamming-distance-md/" data-id="cj3cnxehc0015cn4udbsda8ss" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/26/Leetcode/1-two-sum/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          1.two sum
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">442.find all duplicates in an array</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-Leetcode/461-hamming-distance-md" data-title="461.hamming distance" data-url="http://newbird.cn/2016/12/23/Leetcode/461-hamming-distance-md/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -144,7 +182,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

@@ -81,51 +81,94 @@ Could you do it without extra">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Leetcode/442-find-all-duplicates-in-an-array-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:57.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      442.find all duplicates in an array
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <ul>
+<li><p>Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.</p>
+</li>
+<li><p>Find all the elements that appear twice in this array.</p>
+</li>
+<li><p>Could you do it without extra space and in O(n) runtime?</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[2,3]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：一个整型数组，[1,n]其中n为数组大小，其中有些元素出现2次，有些出现1次，求出现2次的元素，0(n)复杂度<a id="more"></a></li>
+<li>思路：将数组作为下标，使用正负法<h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Return an array of size *returnSize.</div><div class="line"> * Note: The returned array must be malloced, assume caller calls free().</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">int</span>* <span class="title">findDuplicates</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> *result=<span class="literal">NULL</span>;</div><div class="line">    result = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(numsSize*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line">    <span class="keyword">int</span> temp=<span class="number">0</span>;</div><div class="line">    *returnSize=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++) &#123;</div><div class="line">        <span class="keyword">if</span>(nums[<span class="built_in">abs</span>(nums[i])<span class="number">-1</span>]&lt;<span class="number">0</span>) &#123;</div><div class="line">            result[temp]=<span class="built_in">abs</span>(nums[i]);</div><div class="line">            temp++;</div><div class="line">            *returnSize = temp;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            nums[<span class="built_in">abs</span>(nums[i])<span class="number">-1</span>]=-nums[<span class="built_in">abs</span>(nums[i])<span class="number">-1</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><p>不是很明白为什么一下代码在用例[4,3,2,7,8,2,3,1]，程序ok，但是用例[3,11,8,16,4,15,4,17,14,14,6,6,2,8,3,12,15,20,20,5]却失败。</p>
+<ul>
+<li><b>原因:</b>之所以这样是在malloc时错误，采用(<em>returnSize)</em>sizeof(int)，但是这个时候<em>returnSize并没有值。所以改为使用正确的numsSize</em>sizeof(int),但是总觉得这样比较浪费内存。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Return an array of size *returnSize.</div><div class="line"> * Note: The returned array must be malloced, assume caller calls free().</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">int</span>* <span class="title">findDuplicates</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span>* returnSize)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> *result=<span class="literal">NULL</span>;</div><div class="line">    result = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>((*returnSize)*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line">    <span class="keyword">int</span> temp=<span class="number">0</span>;</div><div class="line">    *returnSize=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++) &#123;</div><div class="line">        <span class="keyword">if</span>(nums[<span class="built_in">abs</span>(nums[i])<span class="number">-1</span>]&lt;<span class="number">0</span>) &#123;</div><div class="line">            result[temp]=<span class="built_in">abs</span>(nums[i]);</div><div class="line">            temp++;</div><div class="line">            *returnSize = temp;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            nums[<span class="built_in">abs</span>(nums[i])<span class="number">-1</span>]=-nums[<span class="built_in">abs</span>(nums[i])<span class="number">-1</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" data-id="cj3cnxehm0017cn4ufqvuetgo" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/23/Leetcode/461-hamming-distance-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          461.hamming distance
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/23/Leetcode/412-fizz-buzz-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">412. fizz buzz</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-Leetcode/442-find-all-duplicates-in-an-array-md" data-title="442.find all duplicates in an array" data-url="http://newbird.cn/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -141,7 +184,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">

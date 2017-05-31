@@ -70,634 +70,606 @@
       <div class="outer">
         <section id="main">
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-CPP/sizeof-和-strlen的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/" class="article-date">
+  <time datetime="2016-12-29T15:39:01.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/CPP/sizeof-和-strlen的区别/">sizeof和strlen的区别</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>在一些场景下,希望得到数组的大小，字符串的长度，char型数组的长度等等，很自然想到sizeof以及strlen,但是非常容易搞混弄错.下面简要列出一些区别：</p>
+<ol>
+<li><p>sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。<br>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+</li>
+<li><p>sizeof是操作符，strlen是函数。 </p>
+</li>
+<li><p>sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">short f();</div><div class="line">printf(&quot;%d\n&quot;, sizeof(f()));</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出的结果是 <code>sizeof(short)</code> ，即2。 </p>
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/29/CPP/sizeof-和-strlen的区别/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/29/CPP/sizeof-和-strlen的区别/" data-id="cj3cnxef70009cn4ucqogrjif" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-CPP/C-指针注意事项" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/29/CPP/C-指针注意事项/" class="article-date">
+  <time datetime="2016-12-29T15:34:47.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/CPP/C-指针注意事项/">C++指针注意事项</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <ul>
+<li><p>一定要在对指针使用解除运算符（*）之前，将指针初始化为一个确定的适当的地址，这是关于使用指针的金科玉律。</p>
+</li>
+<li><p>使用delete的关键在于，将他用于new分配的内存。这并不意味这要使用用于new的指针，而是用于new分配的地址。<br><b>Example:</b></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> *ps = <span class="keyword">new</span> <span class="keyword">int</span>;    <span class="comment">//allocate memory</span></div><div class="line"><span class="keyword">int</span> *pq = ps;         <span class="comment">//set second pointer to same block</span></div><div class="line"><span class="keyword">delete</span> pq;			  <span class="comment">//delete with second pointer</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上方法为同一使用new分配的空间，创建了两个指针，通常不会这么做，这将增加删除同一内存块两次的可能性。遵守</p>
+<ul>
+<li>使用new和delete时，需要以下规则。</li>
+</ul>
+<ol>
+<li>不要使用delete来释放不是new分配的内存；</li>
+<li>不要使用delete释放同一个内存块两次；</li>
+<li>如果使用new []为数组分配内存，则应使用delete []来释放</li>
+<li>如果使用new []为一个实体分配内存，则应使用delete来释放</li>
+<li>对空指针使用delete是安全的</li>
+</ol>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/29/CPP/C-指针注意事项/" data-id="cj3cnxeg5000ocn4uapiq5jm5" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Leetcode/414-the-third-maxium-number" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/28/Leetcode/414-the-third-maxium-number/" class="article-date">
+  <time datetime="2016-12-28T15:26:04.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/28/Leetcode/414-the-third-maxium-number/">414. the third maxium number</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <ul>
+<li>Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).<br><b>Example 1:</b><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: The third maximum is <span class="number">1.</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><b>Example 2:</b><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1, 2]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: The third maximum does not exist, so the maximum (2) is returned instead.</div></pre></td></tr></table></figure></p>
+<p><b>Example 3:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: Note that the third maximum here means the third maximum distinct number.</div><div class="line">Both numbers with value <span class="number">2</span> are both considered as second maximum.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：给一个非空整型数组，返回第三大的数字，如果不存在则返回最大的数字，要求时间复杂度为0（n）
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/28/Leetcode/414-the-third-maxium-number/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/28/Leetcode/414-the-third-maxium-number/" data-id="cj3cnxeh50012cn4uqyjwki0c" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Leetcode/1-two-sum" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/26/Leetcode/1-two-sum/" class="article-date">
+  <time datetime="2016-12-26T15:35:23.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/Leetcode/1-two-sum/">1.two sum</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <ul>
+<li><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+</li>
+<li><p>You may assume that each input would have exactly one solution.</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</div><div class="line"></div><div class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</div><div class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1>
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/26/Leetcode/1-two-sum/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/26/Leetcode/1-two-sum/" data-id="cj3cnxegp000ucn4ujqohpxgk" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Leetcode/461-hamming-distance-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/461-hamming-distance-md/" class="article-date">
+  <time datetime="2016-12-23T02:11:23.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/461-hamming-distance-md/">461.hamming distance</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <ul>
+<li><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
+</li>
+<li><p>Given two integers x and y, calculate the Hamming distance.</p>
+</li>
+</ul>
+<p><b>Note</b>:<br>0 ≤ x, y &lt; 2^31.</p>
+<p><b>Example</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line"></div><div class="line">The above arrows point to positions where the corresponding bits are different.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>：Hanmming Distance 就是两个整数[0 2^31]二进制表示对应位上不同位数的个数。给定X,Y求取两者的hamming distance
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/23/Leetcode/461-hamming-distance-md/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/461-hamming-distance-md/" data-id="cj3cnxehc0015cn4udbsda8ss" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Leetcode/442-find-all-duplicates-in-an-array-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:57.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/">442.find all duplicates in an array</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <ul>
+<li><p>Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.</p>
+</li>
+<li><p>Find all the elements that appear twice in this array.</p>
+</li>
+<li><p>Could you do it without extra space and in O(n) runtime?</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[2,3]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：一个整型数组，[1,n]其中n为数组大小，其中有些元素出现2次，有些出现1次，求出现2次的元素，0(n)复杂度
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/442-find-all-duplicates-in-an-array-md/" data-id="cj3cnxehm0017cn4ufqvuetgo" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Leetcode/412-fizz-buzz-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/412-fizz-buzz-md/" class="article-date">
+  <time datetime="2016-12-23T02:09:06.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/412-fizz-buzz-md/">412. fizz buzz</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <ul>
+<li><p>Write a program that outputs the string representation of numbers from 1 to n.</p>
+</li>
+<li><p>But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
+</li>
+</ul>
+<p><b>Example:</b><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">n = <span class="number">15</span>,</div><div class="line"></div><div class="line">Return:</div><div class="line">[</div><div class="line">    <span class="string">"1"</span>,</div><div class="line">    <span class="string">"2"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"4"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"7"</span>,</div><div class="line">    <span class="string">"8"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"Buzz"</span>,</div><div class="line">    <span class="string">"11"</span>,</div><div class="line">    <span class="string">"Fizz"</span>,</div><div class="line">    <span class="string">"13"</span>,</div><div class="line">    <span class="string">"14"</span>,</div><div class="line">    <span class="string">"FizzBuzz"</span></div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：写一个程序输出1到n的字符串表达，但是 如果是3的倍数，不输出对应数字的字符串，而是输出“Fizz” ，如果是5的倍数，不输出对应数字的字符串，而是输出“Buzz”， 若同时是3和5的倍数，则输出 “FizzBuzz”。
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/23/Leetcode/412-fizz-buzz-md/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/412-fizz-buzz-md/" data-id="cj3cnxeh10010cn4uhh2qi6kh" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Leetcode/202-happy-number-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/23/Leetcode/202-happy-number-md/" class="article-date">
+  <time datetime="2016-12-23T02:08:24.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Leetcode/202-happy-number-md/">202.happy number</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <ul>
+<li><p>write an algorithm to determine if a number is ‘happy’</p>
+</li>
+<li><p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay),or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+</li>
+</ul>
+<p><b>Example:</b> 19 is a happy number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1^2 + 9^2 = 82</div><div class="line">8^2 + 2^2 = 68</div><div class="line">6^2 + 8^2 = 100</div><div class="line">1^2 + 0^2 + 0^2 = 1</div></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li><b>翻译</b>： 判断一个正整数是否为一个happy-number，一个正整数各位的平方和代替次正整数，不断迭代，如果迭代出1，则为happy-number，否则不是而且会出现无限循环。
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/12/23/Leetcode/202-happy-number-md/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/23/Leetcode/202-happy-number-md/" data-id="cj3cnxegw000xcn4uyn2wzrv0" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" class="article-date">
+  <time datetime="2016-12-20T00:00:17.000Z" itemprop="datePublished">2016-12-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/">Linux下gedit打开文件产生带波浪号（～）的备份文件</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <p>  在ubuntu系统下，使用gedit编辑器打开文件（如test.md），会自动生成一个备份文件，文件名字为（原文件名＋波浪号 test.md~）,这种情况是为了防止系统或者编辑器突然崩溃，以恢复文件使用。但是有时候看着特别繁琐和凌乱。所以一下为解决办法，相反也可以开启自动备份功能。</p>
+<h1 id="如何快速删除此类备份文件"><a href="#如何快速删除此类备份文件" class="headerlink" title="如何快速删除此类备份文件"></a>如何快速删除此类备份文件</h1><pre><code>rm -rf *.*~
+</code></pre><ul>
+<li>-f –force 忽略不存在文件，强制删除并不提示</li>
+<li>-r –recursive 删除该目录及其子目录下所有符合条件的文件</li>
+<li><em>.</em>~ *代表任意，任意文件名+’.’+任意文件类型后缀+’~’,满足该条件的文件都删除</li>
+</ul>
+<h1 id="如何设置取消生成自动备份文件"><a href="#如何设置取消生成自动备份文件" class="headerlink" title="如何设置取消生成自动备份文件"></a>如何设置取消生成自动备份文件</h1><ul>
+<li>gedit编辑器：　最大化窗口-&gt;Edit-&gt;Preferences-&gt;Editor-&gt;file saving-&gt;取消’Creat a backup copy of files before saving’选项，中文系统同理。</li>
+<li>Vi/Vim编辑器:<br>  vi ~/.vimrc<br>  set nobackup<br>通过以上方法可以实现删除或者取消自动备份文件功能，相反可以开启自动备份功能。</li>
+</ul>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/20/Linux_shell/Linux下gedit打开文件产生带波浪号（～）的备份文件/" data-id="cj3cnxehu0019cn4unhx5jpo9" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-OpenCV/VS2010+OpenCV2.4.10的安装与配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" class="article-date">
+  <time datetime="2016-09-24T22:56:32.000Z" itemprop="datePublished">2016-09-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/">VS2010+OpenCV2.4.10的安装与配置</a>
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>由于本人最近要做图像处理的一些工作，因此将相应的流程记录备份，方便自己，也为他人提供一个思路吧。<br/><br>平台操作系统： Win7 32位 旗舰版<br/></p>
+<h2 id="1、VS2010的安装"><a href="#1、VS2010的安装" class="headerlink" title="1、VS2010的安装"></a>1、VS2010的安装</h2><p>直接点击 AutoRun.exe或者Setup.exe按照提示一步步安装即可。需要选择安装那些模块，按自己的开发需要选择，如果实在不懂，全部安装。<br/></p>
+<h2 id="2、OpenCV的安装"><a href="#2、OpenCV的安装" class="headerlink" title="2、OpenCV的安装"></a>2、OpenCV的安装</h2><p>我用的是OpenCV2.4.10，安装非常简单。只要选择安装位置就可以自动完成，如图1。需要记住该安装地址（本文假设安装在D盘根目录下 D:\）。<br><img src="http://oapeb119y.bkt.clouddn.com/1.png" alt="图1"><br><img src="http://oapeb119y.bkt.clouddn.com/2.png" alt="图2"></p>
+<h2 id="3、OpenCV的配置"><a href="#3、OpenCV的配置" class="headerlink" title="3、OpenCV的配置"></a>3、OpenCV的配置</h2>
+        
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+        
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/09/25/OpenCV/VS2010+OpenCV2.4.10的安装与配置/" data-id="cj3cnxekh0029cn4urkwlpx31" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV基础/">OpenCV基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2010/">VS2010</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
-<section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"newbird"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-</section>
-<% } %>
+
 
   
 

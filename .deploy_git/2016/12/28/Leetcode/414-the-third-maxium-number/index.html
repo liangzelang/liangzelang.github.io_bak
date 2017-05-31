@@ -69,51 +69,87 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Leetcode/414-the-third-maxium-number" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/2016/12/28/Leetcode/414-the-third-maxium-number/" class="article-date">
+  <time datetime="2016-12-28T15:26:04.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      414. the third maxium number
+    </h1>
+  
+
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      
+        <ul>
+<li>Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).<br><b>Example 1:</b><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: The third maximum is <span class="number">1.</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><b>Example 2:</b><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1, 2]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: The third maximum does not exist, so the maximum (2) is returned instead.</div></pre></td></tr></table></figure></p>
+<p><b>Example 3:</b><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">Output: <span class="number">1</span></div><div class="line"></div><div class="line">Explanation: Note that the third maximum here means the third maximum distinct number.</div><div class="line">Both numbers with value <span class="number">2</span> are both considered as second maximum.</div></pre></td></tr></table></figure></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>翻译：给一个非空整型数组，返回第三大的数字，如果不存在则返回最大的数字，要求时间复杂度为0（n）<a id="more"></a></li>
+<li>思路：初始化数组temp[3]，循环比较给定数组中的数字，把循环过程中前三数字放在temp[3]中，最后检查temp数组有没有被填满，如果有就说明第三大的数字存在，如果没有就不存在，按要求返回数值即可。<h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h2></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">thirdMax</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> flag,flag1,flag2=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> temp[<span class="number">3</span>]=&#123; <span class="number">-2147483648</span>, <span class="number">-2147483648</span>, <span class="number">-2147483648</span>&#125;;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++) &#123;</div><div class="line">       <span class="keyword">if</span>(nums[i]&gt;temp[<span class="number">2</span>]) &#123;</div><div class="line">           <span class="keyword">if</span>(flag2==<span class="number">1</span>) &#123;</div><div class="line">               <span class="keyword">if</span>(flag1==<span class="number">1</span>)&#123;</div><div class="line">                temp[<span class="number">0</span>] = temp[<span class="number">1</span>];</div><div class="line">                temp[<span class="number">1</span>] = temp[<span class="number">2</span>];</div><div class="line">                temp[<span class="number">2</span>] = nums[i];</div><div class="line">                flag =<span class="number">1</span>;</div><div class="line">               &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">//temp[0] = temp[1];</span></div><div class="line">                temp[<span class="number">1</span>] = temp[<span class="number">2</span>];</div><div class="line">                temp[<span class="number">2</span>] = nums[i];</div><div class="line">                flag1 =<span class="number">1</span>;   <span class="comment">//标记该位被占 </span></div><div class="line">               &#125;</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">              temp[<span class="number">2</span>] = nums[i];</div><div class="line">              flag2=<span class="number">1</span>;</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]==temp[<span class="number">2</span>]) &#123; </div><div class="line">           flag2=<span class="number">1</span>;   <span class="comment">//表示这一位被占</span></div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span>((nums[i]&lt;temp[<span class="number">2</span>])&amp;&amp;(nums[i]&gt;temp[<span class="number">1</span>])) &#123;</div><div class="line">           <span class="keyword">if</span>(flag1==<span class="number">1</span>) &#123;</div><div class="line">               temp[<span class="number">0</span>] = temp[<span class="number">1</span>];</div><div class="line">               temp[<span class="number">1</span>] = nums[i];</div><div class="line">               flag=<span class="number">1</span>;</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               temp[<span class="number">1</span>] = nums[i];</div><div class="line">               flag1=<span class="number">1</span>;</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]==temp[<span class="number">1</span>]) &#123;</div><div class="line">           flag1=<span class="number">1</span>;    <span class="comment">//表示此位被占</span></div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span>((nums[i]&lt;temp[<span class="number">1</span>])&amp;&amp;(nums[i]&gt;temp[<span class="number">0</span>])) &#123;</div><div class="line">           <span class="keyword">if</span>(flag ==<span class="number">1</span>) &#123;</div><div class="line">               temp[<span class="number">0</span>]=nums[i];</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               temp[<span class="number">0</span>]=nums[i];</div><div class="line">               flag=<span class="number">1</span>;</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]==temp[<span class="number">0</span>]) &#123;</div><div class="line">           flag=<span class="number">1</span>;</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(flag==<span class="number">1</span>) </div><div class="line">        <span class="keyword">return</span> temp[<span class="number">0</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> temp[<span class="number">2</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>这道题在leetcode中难度级别为easy，但是ac率只有20%多，根据自己做这道题感觉最大的原因不是没有思路，而且细节处理上，特别是如果确定是否存在第三大的数字，还有就是int范围等。</p>
+
+      
     </div>
 
     <footer class="article-footer">
-   <!--    <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
-    
-	<% if (post.comments && config.disqus_shortname){ %>
-	<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-      <% } %>
+     <a data-url="http://newbird.cn/2016/12/28/Leetcode/414-the-third-maxium-number/" data-id="cj3cnxeh50012cn4uqyjwki0c" class="article-share-link">Share</a>
+    <!--  
+	
    -->
-      <%- partial('post/tag') %>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
     </footer>
  
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/29/CPP/C-指针注意事项/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++指针注意事项
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/26/Leetcode/1-two-sum/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">1.two sum</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-<% if (!index && post.comments && config.duoshuo_shortname){ %>
+
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
+  <div class="ds-thread" data-thread-key="<post-Leetcode/414-the-third-maxium-number" data-title="414. the third maxium number" data-url="http://newbird.cn/2016/12/28/Leetcode/414-the-third-maxium-number/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -129,7 +165,7 @@ var duoshuoQuery = {short_name:"newbird"};
 	</script>
 <!-- 多说公共JS代码 end -->
 </section>
-<% } %>
+
 </section>
         
           <aside id="sidebar">
